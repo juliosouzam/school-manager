@@ -34,7 +34,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @auth
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Alunos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Cursos</a>
+                                </li>
+                            </ul>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -51,9 +60,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    @if (true)
+                                        <a class="dropdown-item" href="#">Config</a>
+                                    @endif
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                         {{ __('Sair') }}
                                     </a>
 
