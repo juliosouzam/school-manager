@@ -1,0 +1,42 @@
+version: "3.6"
+services:
+  app:
+    build: ./docker/
+    image: ojuliocesar/school-system
+    ports:
+      - "80:80"
+    depends_on:
+      - "database"
+      - "portainer"
+    volumes:
+      - ".:/var/www/html"
+    networks:
+      - "webnet"
+
+  portainer:
+    image: portainer/portainer
+    command: -H unix:///var/run/docker.sock
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - "webnet"
+
+  database:
+    image: postgres:9
+    environment:
+      - POSTGRES_DB=school
+      - POSTGRES_USER=school
+      - POSTGRES_PASSWORD=70005b146c63911adabe92c6226269010c40d8433bf570f8a391f470b011
+    volumes:
+      - ../data:/var/lib/postgresql/data
+    networks:
+      - "webnet"
+
+networks:
+  webnet:
+
+volumes:
+  portainer_data:
