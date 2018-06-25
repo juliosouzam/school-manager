@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace School;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
