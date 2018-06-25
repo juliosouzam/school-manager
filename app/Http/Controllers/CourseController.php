@@ -27,7 +27,9 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('course.create');
+
+        return view('courses.create');
     }
 
     /**
@@ -38,7 +40,14 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = new Course;
+        $this->authorize('course.store');
+        $course->fill($request->all());
+        if ($course->save()) {
+            return redirect()->route('course.show', $course->id)->with('status', 'Curso adicionado com sucesso!');
+        }
+
+        return redirect()->back()->with('error', 'Erro ao adicionar o curso!');
     }
 
     /**

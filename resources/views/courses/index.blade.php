@@ -16,7 +16,7 @@
 
                         <table class="table table-striped table-hover">
                             <div class="float-right mb-2">
-                                <a href="#" class="btn btn-sm btn-success">
+                                <a href="{{ route('course.create') }}" class="btn btn-sm btn-success">
                                     <i class="fa fa-fw fa-plus"></i>
                                     Adicionar
                                 </a>

@@ -11,7 +11,7 @@ class Student extends Model
         'name',
         'course_id',
         'semestre',
-        
+        'status'
     ];
 
     protected $dates = [
