@@ -14,7 +14,10 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('course.index');
+        $courses = Course::latest()->paginate(15);
+
+        return view('courses.index', compact('courses'));
     }
 
     /**
@@ -46,7 +49,9 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        $this->authorize('course.show');
+
+        return view('courses.show', compact('course'));
     }
 
     /**
@@ -57,7 +62,9 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        $this->authorize('course.edit');
+
+        return view('courses.edit', compact('course'));
     }
 
     /**
@@ -69,7 +76,11 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $this->authorize('course.update');
+
+        $course->update($request->all());
+
+        return redirect()->back()->with('status', 'Curso atualizado com sucesso!');
     }
 
     /**

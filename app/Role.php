@@ -16,4 +16,9 @@ class Role extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function isAdmin()
+    {
+        return $this->type == 1;
+    }
 }
