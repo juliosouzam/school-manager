@@ -20,7 +20,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/admin') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -35,7 +35,10 @@
                         @auth
                             <ul class="nav nav-pills">
                                 <li class="nav-item {{ Request::is('admin/student*') ? 'active':'' }}">
-                                    <a href="{{ route('student.index') }}" class="nav-link">Alunos</a>
+                                    <a href="{{ route('student.index') }}" class="nav-link">
+                                        <i class="fa fa-fw fa-user"></i>
+                                        Alunos
+                                    </a>
                                 </li>
                                 <li class="nav-item {{ Request::is('admin/course*') ? 'active':'' }}">
                                     <a href="{{ route('course.index') }}" class="nav-link">

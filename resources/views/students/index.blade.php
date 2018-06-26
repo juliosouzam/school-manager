@@ -13,7 +13,7 @@
                                     Adicionar
                                 </a>
                             </div>
-                            <thead class="thead-light">
+                            <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nome do Aluno</th>

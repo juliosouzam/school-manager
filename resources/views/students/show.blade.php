@@ -65,7 +65,9 @@
                                                 <b>Curso:</b>
                                             </label>
                                             <div class="col-md-12">
-                                                <p>{{ $student->course->name }}</p>
+                                                <p>
+                                                    <a href="{{ route('course.show', $student->course->id) }}">{{ $student->course->name }}</a>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
