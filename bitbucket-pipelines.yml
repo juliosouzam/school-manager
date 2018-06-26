@@ -19,8 +19,6 @@ pipelines:
             - cp .env.example .env
             - php artisan k:ge
             - vendor/bin/phpunit
-            - git remote add prod $REMOTE
-            - git push prod master
     develop:
       - step:
           deployment: test
