@@ -18,7 +18,7 @@ class SchoolInstallCommand extends Command
     *
     * @var string
     */
-    protected $description = 'Instala a aplicação School com ';
+    protected $description = 'Instala a aplicação School com seus dados de acesso!';
 
     /**
     * Create a new command instance.
