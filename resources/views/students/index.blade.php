@@ -17,12 +17,13 @@
                                     Adicionar
                                 </a>
                             </div>
-                            <thead class="thead-light">
+                            <thead>
                                 <tr>
                                     <th scope="col">Matrícula</th>
                                     <th scope="col">Nome do Aluno</th>
                                     <th scope="col">Curso</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Atualizado em</th>
                                     <th scope="col">Ações</th>
                                 </tr>
                             </thead>
@@ -35,6 +36,7 @@
                                             <a href="{{ route('course.show', $student->course->id) }}">{{ $student->course->name }}</a>
                                         </td>
                                         <td>{{ $student->getStatusName() }}</td>
+                                        <td>{{ $student->updated_at->format('d/m/Y H:i') }}</td>
                                         <td>
                                             <a href="{{ route('student.show', $student->id) }}" class="btn btn-sm btn-info">
                                                 <i class="fa fa-fw fa-eye"></i>
