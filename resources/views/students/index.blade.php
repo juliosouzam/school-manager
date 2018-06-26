@@ -4,11 +4,11 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Lista de Cursos</div>
+                <div class="card-header">Lista de Alunos</div>
                 <div class="card-body">
                     <table class="table table-striped table-hover">
                         <div class="float-right mb-2">
-                            <a href="{{ route('course.create') }}" class="btn btn-sm btn-success">
+                            <a href="{{ route('student.create') }}" class="btn btn-sm btn-success">
                                 <i class="fa fa-fw fa-plus"></i>
                                 Adicionar
                             </a>
@@ -16,46 +16,46 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Cód. Curso</th>
-                                <th scope="col">Nome do Curso</th>
-                                <th scope="col">Instituição Ens.</th>
-                                <th scope="col">Atualizado em</th>
+                                <th scope="col">Nome do Aluno</th>
+                                <th scope="col">Curso</th>
+                                <th scope="col">Matrícula</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($courses as $course)
+                            @foreach ($students as $student)
                             <tr>
-                                <th scope="row">{{ $course->id }}</th>
-                                <td>{{ $course->cod_course }}</td>
-                                <td>{{ $course->name }}</td>
-                                <td>{{ $course->institution }}</td>
-                                <td>{{ $course->updated_at->format('d/m/Y H:i') }}</td>
+                                <th scope="row">{{ $student->id }}</th>
+                                <td>{{ $student->name }}</td>
+                                <td>{{ $student->course->name }}</td>
+                                <td>{{ $student->registry }}</td>
+                                <td>{{ $student->getStatusName() }}</td>
                                 <td>
-                                    <a href="{{ route('course.show', $course->id) }}" class="btn btn-sm btn-info">
+                                    <a href="{{ route('student.show', $student->id) }}" class="btn btn-sm btn-info">
                                         <i class="fa fa-fw fa-eye"></i>
                                     </a>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDeleteCourse-{{ $course->id }}">
+                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDeleteStudent-{{ $student->id }}">
                                         <i class="fa fa-fw fa-trash"></i>
                                     </button>
                                     <!-- Modal -->
-                                    <div class="modal fade" id="modalDeleteCourse-{{ $course->id }}" tabindex="-1" role="dialog"aria-labelledby="modalDeleteCourseLabel" aria-hidden="true">
+                                    <div class="modal fade" id="modalDeleteStudent-{{ $student->id }}" tabindex="-1" role="dialog"aria-labelledby="modalDeleteStudentLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalDeleteCourseLabel">Remover curso</h5>
+                                                    <h5 class="modal-title" id="modalDeleteStudentLabel">Remover curso</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Deseja realmente remover o curso de <b>{{ $course->name }}</b>
+                                                    Deseja realmente remover o aluno <b>{{ $student->name }}</b>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                    <button type="button" class="btn btn-danger"  onclick="event.preventDefault();document.getElementById('form-destroy-course-{{ $course->id }}').submit();">Sim, quero remover</button>
-                                                    <form id="form-destroy-course-{{ $course->id }}" action="{{ route('course.destroy', $course->id) }}" method="post" accept-charset="utf-8">
+                                                    <button type="button" class="btn btn-danger"  onclick="event.preventDefault();document.getElementById('form-destroy-student-{{ $student->id }}').submit();">Sim, quero remover</button>
+                                                    <form id="form-destroy-student-{{ $student->id }}" action="{{ route('student.destroy', $student->id) }}" method="post" accept-charset="utf-8">
                                                         @csrf
                                                         @method('DELETE')
                                                     </form>

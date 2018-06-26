@@ -37,7 +37,7 @@
                         @auth
                             <ul class="nav nav-pills">
                                 <li class="nav-item {{ Request::is('admin/student*') ? 'active':'' }}">
-                                    <a href="#" class="nav-link">Alunos</a>
+                                    <a href="{{ route('student.index') }}" class="nav-link">Alunos</a>
                                 </li>
                                 <li class="nav-item {{ Request::is('admin/course*') ? 'active':'' }}">
                                     <a href="{{ route('course.index') }}" class="nav-link">

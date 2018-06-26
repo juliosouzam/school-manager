@@ -58,7 +58,7 @@
                                             Editar
                                         </a>
                                         <a href="{{ route('course.index') }}" class="btn btn-secondary">
-                                            Cancelar
+                                            Voltar
                                         </a>
                                     </div>
                                 </div>

@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     protected $fillable = [
-        'registration',
+        'registry',
         'name',
         'course_id',
-        'semestre',
+        'semester',
         'status'
     ];
 
@@ -23,5 +23,23 @@ class Student extends Model
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function getStatusName()
+    {
+        switch ($this->status) {
+            case 0:
+            return "Matriculado";
+                break;
+            case 1:
+            return "Trancado";
+                break;
+            case 2:
+            return "Jubilado";
+                break;
+            default:
+            return "Nenhum dado encontrado!";
+                break;
+        }
     }
 }

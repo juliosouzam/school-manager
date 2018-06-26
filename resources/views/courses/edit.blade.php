@@ -60,7 +60,7 @@
                                             Enviar
                                         </button>
                                         <a href="{{ route('course.show', $course->id) }}" class="btn btn-secondary">
-                                            Cancelar
+                                            Voltar
                                         </a>
                                     </div>
                                 </div>
