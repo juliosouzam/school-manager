@@ -28,7 +28,9 @@
                             <tr>
                                 <th scope="row">{{ $student->id }}</th>
                                 <td>{{ $student->name }}</td>
-                                <td>{{ $student->course->name }}</td>
+                                <td>
+                                    <a href="{{ route('course.show', $student->course->id) }}">{{ $student->course->name }}</a>
+                                </td>
                                 <td>{{ $student->registry }}</td>
                                 <td>{{ $student->getStatusName() }}</td>
                                 <td>

@@ -66,6 +66,39 @@
                         </form>
                     </div>
                 </div>
+                <hr>
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <div class="float-left">
+                            <h4 class="m-t-10 text-white">
+                                Alunos
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-hover">
+                          <thead class="thead-inverse">
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>Matrícula</th>
+                            <th>Semestre</th>
+                            <th>Atualização</th>
+                          </thead>
+                          <tbody>
+                              @foreach ($course->students as $student)
+                                  <tr>
+                                      <td>{{ $student->id }}</td>
+                                      <td>{{ $student->name }}</td>
+                                      <td>{{ $student->registry }}</td>
+                                      <td>{{ $student->semester }}</td>
+                                      <td>{{ $student->updated_at->format('d/m/Y H:i') }}</td>
+                                  </tr>
+                              @endforeach
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

@@ -89,7 +89,7 @@ class CourseController extends Controller
 
         $course->update($request->all());
 
-        return redirect()->back()->with('status', 'Curso atualizado com sucesso!');
+        return redirect()->route('course.show', $course->id)->with('status', 'Curso atualizado com sucesso!');
     }
 
     /**
@@ -101,7 +101,7 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         $this->authorize('course.destroy');
-        
+
         if ($course->delete()) {
             return redirect()->back()->with('status', 'Curso deletado com sucesso!');
         }
