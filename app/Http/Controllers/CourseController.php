@@ -4,14 +4,16 @@ namespace School\Http\Controllers;
 
 use School\Course;
 use Illuminate\Http\Request;
+use School\Http\Requests\StoreCourseRequest;
+use School\Http\Requests\UpdateCourseRequest;
 
 class CourseController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index()
     {
         $this->authorize('course.index');
@@ -21,10 +23,10 @@ class CourseController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function create()
     {
         $this->authorize('course.create');
@@ -33,16 +35,20 @@ class CourseController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+    public function store(StoreCourseRequest $request)
     {
-        $course = new Course;
         $this->authorize('course.store');
-        $course->fill($request->all());
+
+        $request = $request->only(['cod_course', 'name', 'institution']);
+
+        $course = new Course;
+        $course->fill($request);
+
         if ($course->save()) {
             return redirect()->route('course.show', $course->id)->with('status', 'Curso adicionado com sucesso!');
         }
@@ -51,11 +57,11 @@ class CourseController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \School\Course  $course
-     * @return \Illuminate\Http\Response
-     */
+    * Display the specified resource.
+    *
+    * @param  \School\Course  $course
+    * @return \Illuminate\Http\Response
+    */
     public function show(Course $course)
     {
         $this->authorize('course.show');
@@ -64,11 +70,11 @@ class CourseController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \School\Course  $course
-     * @return \Illuminate\Http\Response
-     */
+    * Show the form for editing the specified resource.
+    *
+    * @param  \School\Course  $course
+    * @return \Illuminate\Http\Response
+    */
     public function edit(Course $course)
     {
         $this->authorize('course.edit');
@@ -77,27 +83,29 @@ class CourseController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \School\Course  $course
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Course $course)
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  \School\Course  $course
+    * @return \Illuminate\Http\Response
+    */
+    public function update(UpdateCourseRequest $request, Course $course)
     {
         $this->authorize('course.update');
 
-        $course->update($request->all());
+        $request = $request->only(['cod_course', 'name', 'institution']);
+
+        $course->update($request);
 
         return redirect()->route('course.show', $course->id)->with('status', 'Curso atualizado com sucesso!');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \School\Course  $course
-     * @return \Illuminate\Http\Response
-     */
+    * Remove the specified resource from storage.
+    *
+    * @param  \School\Course  $course
+    * @return \Illuminate\Http\Response
+    */
     public function destroy(Course $course)
     {
         $this->authorize('course.destroy');

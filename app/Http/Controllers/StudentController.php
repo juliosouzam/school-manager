@@ -4,6 +4,7 @@ namespace School\Http\Controllers;
 
 use School\Student;
 use Illuminate\Http\Request;
+use School\Http\Requests\StoreStudentRequest;
 
 class StudentController extends Controller
 {
@@ -39,7 +40,7 @@ class StudentController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request, Student $student)
+    public function store(StoreStudentRequest $request, Student $student)
     {
         $this->authorize('student.store');
 

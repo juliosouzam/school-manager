@@ -68,6 +68,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        @if (!empty($courses))
+                            {{ $courses->render() }}
+                        @endif
                     </div>
                 </div>
             </div>
@@ -86,17 +89,32 @@
 
     <script type="text/javascript">
     @if (session('error'))
-        swal({
-            type: 'error',
-            title: 'Oops...',
-            text: '{{ session('error') }}',
-        });
+    swal({
+        type: 'error',
+        title: 'Oops...',
+        text: '{{ session('error') }}',
+    });
     @endif
+
     @if (session('status'))
-        swal({
-            type: 'success',
-            title: 'Sucesso!',
-            text: '{{ session('status') }}',
+    swal({
+        type: 'success',
+        title: 'Sucesso!',
+        text: '{{ session('status') }}',
+    });
+    @endif
+
+    @if ($courses->count() == 0)
+        const toast = swal.mixin({
+            toast: true,
+            position: 'bottom-end',
+            showConfirmButton: false,
+            timer: 4000
+        });
+
+        toast({
+            type: 'info',
+            title: 'Nenhum curso encontrado!'
         });
     @endif
     </script>

@@ -23,7 +23,7 @@
                                                 <b>Cód. Curso:</b>
                                             </label>
                                             <div class="col-md-12">
-                                                <input type="text" class="form-control" name="cod_course" value="" placeholder="Código do curso">
+                                                <input type="text" class="form-control" name="cod_course" value="{{ old('cod_course') }}" placeholder="Código do curso">
                                             </div>
                                         </div>
                                     </div>
@@ -33,7 +33,7 @@
                                                 <b>Nome:</b>
                                             </label>
                                             <div class="col-md-12">
-                                                <input type="text" class="form-control" name="name" value="" placeholder="Nome do curso">
+                                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Nome do curso">
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +45,7 @@
                                                 <b>Instituição:</b>
                                             </label>
                                             <div class="col-md-12">
-                                                <input type="text" class="form-control" name="institution" value="" placeholder="Instituição de ensino">
+                                                <input type="text" class="form-control" name="institution" value="{{ old('institution') }}" placeholder="Instituição de ensino">
                                             </div>
                                         </div>
                                     </div>
@@ -84,18 +84,31 @@
 
     <script type="text/javascript">
     @if (session('error'))
-        swal({
-            type: 'error',
-            title: 'Oops...',
-            text: '{{ session('error') }}',
-        });
+    swal({
+        type: 'error',
+        title: 'Oops...',
+        text: '{{ session('error') }}',
+    });
     @endif
+
     @if (session('status'))
-        swal({
-            type: 'success',
-            title: 'Sucesso!',
-            text: '{{ session('status') }}',
-        });
+    swal({
+        type: 'success',
+        title: 'Sucesso!',
+        text: '{{ session('status') }}',
+    });
+    @endif
+
+    @if ($errors->any())
+    swal({
+        type: 'error',
+        title: 'Ops...',
+        html: '@php
+        foreach ($errors->all() as $error) {
+            echo $error .'<br>';
+        }
+        @endphp',
+    });
     @endif
     </script>
-@endpush
+    @endpush

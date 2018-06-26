@@ -91,11 +91,25 @@
             text: '{{ session('error') }}',
         });
     @endif
+
     @if (session('status'))
         swal({
             type: 'success',
             title: 'Sucesso!',
             text: '{{ session('status') }}',
+        });
+    @endif
+
+    @if ($errors->any())
+        swal({
+            type: 'error',
+            title: 'Ops...',
+            html: '@php
+            foreach ($errors->all() as $error) {
+                echo $error ."<br>";
+            }
+            @endphp'
+            ,
         });
     @endif
     </script>

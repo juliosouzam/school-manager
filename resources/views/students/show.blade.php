@@ -110,11 +110,17 @@
         });
     @endif
     @if (session('status'))
-        swal({
-            type: 'success',
-            title: 'Sucesso!',
-            text: '{{ session('status') }}',
-        });
+    const toast = swal.mixin({
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 4000
+    });
+
+    toast({
+        type: 'success',
+        title: '{{ session('status') }}'
+    });
     @endif
     </script>
 @endpush

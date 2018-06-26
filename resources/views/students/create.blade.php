@@ -23,7 +23,7 @@
                                                 <b>Matrícula:</b>
                                             </label>
                                             <div class="col-md-12">
-                                                <input type="text" class="form-control" name="registry" value="" placeholder="Matrícula do aluno">
+                                                <input type="text" class="form-control" name="registry" value="{{ old('registry') }}" placeholder="Matrícula do aluno">
                                             </div>
                                         </div>
                                     </div>
@@ -33,7 +33,7 @@
                                                 <b>Nome:</b>
                                             </label>
                                             <div class="col-md-12">
-                                                <input type="text" class="form-control" name="name" value="" placeholder="Nome do aluno">
+                                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Nome do aluno">
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +45,7 @@
                                                 <b>Semestre:</b>
                                             </label>
                                             <div class="col-md-12">
-                                                <input type="text" class="form-control" name="semester" value="" placeholder="Semestre">
+                                                <input type="text" class="form-control" name="semester" value="{{ old('semester') }}" placeholder="Semestre">
                                             </div>
                                         </div>
                                     </div>
@@ -57,9 +57,9 @@
                                             <div class="col-md-12">
                                                 <select class="form-control" name="status">
                                                     <option value="">Escolha um...</option>
-                                                    <option value="0">Matriculado</option>
-                                                    <option value="1">Trancado</option>
-                                                    <option value="2">Jubilado</option>
+                                                    <option value="0" {{ (old('status') == 0 ) ? 'selected':'' }}>Matriculado</option>
+                                                    <option value="1" {{ (old('status') == 1 ) ? 'selected':'' }}>Trancado</option>
+                                                    <option value="2" {{ (old('status') == 2 ) ? 'selected':'' }}>Jubilado</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -73,7 +73,7 @@
                                                 <select class="form-control" name="course_id">
                                                     <option value="">Escolha um...</option>
                                                     @foreach ($courses as $course)
-                                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                                        <option value="{{ $course->id }}" {{ (old('course_id') && old('course_id') == $course->id ) ? 'selected':'' }}>{{ $course->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -120,12 +120,17 @@
             text: '{{ session('error') }}',
         });
     @endif
-    @if (session('status'))
-        swal({
-            type: 'success',
-            title: 'Sucesso!',
-            text: '{{ session('status') }}',
-        });
+
+    @if ($errors->any())
+    swal({
+        type: 'error',
+        title: 'Ops...',
+        html: '@php
+        foreach ($errors->all() as $error) {
+            echo $error .'<br>';
+        }
+        @endphp',
+    });
     @endif
     </script>
 @endpush

@@ -77,24 +77,24 @@
                     </div>
                     <div class="card-body">
                         <table class="table table-striped table-hover">
-                          <thead class="thead-inverse">
-                            <th>#</th>
-                            <th>Nome</th>
-                            <th>Matrícula</th>
-                            <th>Semestre</th>
-                            <th>Atualização</th>
-                          </thead>
-                          <tbody>
-                              @foreach ($course->students as $student)
-                                  <tr>
-                                      <td>{{ $student->id }}</td>
-                                      <td>{{ $student->name }}</td>
-                                      <td>{{ $student->registry }}</td>
-                                      <td>{{ $student->semester }}</td>
-                                      <td>{{ $student->updated_at->format('d/m/Y H:i') }}</td>
-                                  </tr>
-                              @endforeach
-                          </tbody>
+                            <thead class="thead-inverse">
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>Matrícula</th>
+                                <th>Semestre</th>
+                                <th>Atualização</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($course->students as $student)
+                                    <tr>
+                                        <td>{{ $student->id }}</td>
+                                        <td>{{ $student->name }}</td>
+                                        <td>{{ $student->registry }}</td>
+                                        <td>{{ $student->semester }}</td>
+                                        <td>{{ $student->updated_at->format('d/m/Y H:i') }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -111,23 +111,35 @@
 
 @push('scripts')
     <script src="{{ asset('vendor/js/jquery.js') }}" charset="utf-8"></script>
-    {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" charset="utf-8"></script> --}}
     <script src="{{ asset('vendor/sweetalert2/sweetalert2.min.js') }}" charset="utf-8"></script>
 
     <script type="text/javascript">
     @if (session('error'))
-        swal({
-            type: 'error',
-            title: 'Oops...',
-            text: '{{ session('error') }}',
-        });
+    const toast = swal.mixin({
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 4000
+    });
+
+    toast({
+        type: 'error',
+        title: '{{ session('error') }}'
+    });
     @endif
+
     @if (session('status'))
-        swal({
-            type: 'success',
-            title: 'Sucesso!',
-            text: '{{ session('status') }}',
-        });
+    const toast = swal.mixin({
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 4000
+    });
+
+    toast({
+        type: 'success',
+        title: '{{ session('status') }}'
+    });
     @endif
     </script>
 @endpush
