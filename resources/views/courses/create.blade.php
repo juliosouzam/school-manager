@@ -8,7 +8,8 @@
                     <div class="card-header bg-info">
                         <div class="float-left">
                             <h4 class="m-t-10 text-white">
-                                Adicionar curso
+                                <i class="fa fa-fw fa-plus"></i>
+                                Adicionar Curso
                             </h4>
                         </div>
                     </div>
@@ -56,7 +57,7 @@
                                     <div class="float-right">
                                         <button type="submit" class="btn btn-success" name="button">
                                             <i class="fa fa-pencil"></i>
-                                            Enviar
+                                            Salvar
                                         </button>
                                         <a href="{{ route('course.index') }}" class="btn btn-secondary">
                                             Voltar
@@ -103,12 +104,8 @@
     swal({
         type: 'error',
         title: 'Ops...',
-        html: '@php
-        foreach ($errors->all() as $error) {
-            echo $error .'<br>';
-        }
-        @endphp',
+        html: '@foreach ($errors->all() as $error){!! $error ."<br>" !!}@endforeach',
     });
     @endif
     </script>
-    @endpush
+@endpush

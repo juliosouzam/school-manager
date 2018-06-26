@@ -5,10 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="card">
-                    <div class="card-header bg-info">
+                    <div class="card-header bg-warning">
                         <div class="float-left">
                             <h4 class="m-t-10 text-white">
-                                Informação
+                                <i class="fa fa-fw fa-edit"></i>
+                                Editar Curso
                             </h4>
                         </div>
                     </div>
@@ -57,7 +58,7 @@
                                     <div class="float-right">
                                         <button type="submit" class="btn btn-success" name="button">
                                             <i class="fa fa-pencil"></i>
-                                            Enviar
+                                            Atualizar
                                         </button>
                                         <a href="{{ route('course.show', $course->id) }}" class="btn btn-secondary">
                                             Voltar
@@ -85,32 +86,27 @@
 
     <script type="text/javascript">
     @if (session('error'))
-        swal({
-            type: 'error',
-            title: 'Oops...',
-            text: '{{ session('error') }}',
-        });
+    swal({
+        type: 'error',
+        title: 'Oops...',
+        text: '{{ session('error') }}',
+    });
     @endif
 
     @if (session('status'))
-        swal({
-            type: 'success',
-            title: 'Sucesso!',
-            text: '{{ session('status') }}',
-        });
+    swal({
+        type: 'success',
+        title: 'Sucesso!',
+        text: '{{ session('status') }}',
+    });
     @endif
 
     @if ($errors->any())
-        swal({
-            type: 'error',
-            title: 'Ops...',
-            html: '@php
-            foreach ($errors->all() as $error) {
-                echo $error ."<br>";
-            }
-            @endphp'
-            ,
-        });
+    swal({
+        type: 'error',
+        title: 'Ops...',
+        html: '@foreach ($errors->all() as $error){!! $error ."<br>" !!}@endforeach',
+    });
     @endif
     </script>
 @endpush

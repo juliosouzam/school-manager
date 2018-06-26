@@ -1,0 +1,18 @@
+Adicionar command install com usuário administrador - OK
+
+Mudar a posição do sweetalert para cima - Ok
+
+Página de alunos, deixar todos iguais o header card - Ok
+
+Css Capitalize em todos os títulos de cards - Ok
+Colocar icones nos títulos dos cards - Ok
+
+Mudar os nomes dos botões enviar para salvar e atualizar - OK
+
+Mudar a ordem dos campos nome, semestre e curso. - OK
+    New order Matricula, curso, nome, status, semestre - OK
+
+
+Remover id das tabelas e deixar como referencia a matrícula e código do curso
+
+Page curso, editar, mudar a cor do card
