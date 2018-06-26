@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    Você está logado!
+                    <div class="text-center">
+                        <h3>Bem vindo ao School Manager!</h3>
+                        <p>Aqui, você poderá cadastrar cursos e alunos, visualizar os cursos, dados dos alunos,atualizar registro e se quiser, até deleta-los.</p>
+                    </div>
                 </div>
             </div>
         </div>

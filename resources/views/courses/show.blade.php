@@ -19,7 +19,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group row">
-                                            <label class="control-label text-left col-md-5">Cód. Curso:</label>
+                                            <label class="control-label text-left col-md-5" style="margin-right: -30px;">Cód. Curso:</label>
                                             <div class="col-md-7">
                                                 <p class="form-control-static">
                                                     <b>{{ $course->cod_course }}</b>
@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group row">
-                                            <label class="control-label text-left col-md-2">Nome:</label>
+                                            <label class="control-label text-left col-md-2" style="margin-right: -30px;">Nome:</label>
                                             <div class="col-md-10">
                                                 <p class="form-control-static">
                                                     <b>{{ str_limit($course->name, 100) }}</b>
@@ -41,7 +41,7 @@
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group row">
-                                            <label class="control-label text-left col-md-4">Instituição:</label>
+                                            <label class="control-label text-left col-md-4" style="margin-right: -30px;">Instituição:</label>
                                             <div class="col-md-7">
                                                 <p class="form-control-static">
                                                     <b>{{ $course->institution }}</b>
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-striped table-hover table-responsive-sm">
                                 <thead class="thead-inverse">
                                     <th>Nome</th>
                                     <th>Matrícula</th>

@@ -13,6 +13,6 @@ Mudar a ordem dos campos nome, semestre e curso. - OK
     New order Matricula, curso, nome, status, semestre - OK
 
 
-Remover id das tabelas e deixar como referencia a matrícula e código do curso
+Remover id das tabelas e deixar como referencia a matrícula e código do curso - OK
 
-Page curso, editar, mudar a cor do card
+Page curso, editar, mudar a cor do card - OK

@@ -10,7 +10,7 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover table-responsive-sm">
                             <div class="float-right mb-2">
                                 <a href="{{ route('student.create') }}" class="btn btn-sm btn-success">
                                     <i class="fa fa-fw fa-plus"></i>
@@ -108,6 +108,20 @@
         type: 'success',
         title: '{{ session('status') }}'
     });
+    @endif
+
+    @if ($students->count() == 0)
+        const toast = swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000
+        });
+
+        toast({
+            type: 'info',
+            title: 'Nenhum aluno encontrado!'
+        });
     @endif
     </script>
 @endpush

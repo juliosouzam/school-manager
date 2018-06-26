@@ -10,7 +10,7 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover table-responsive-sm">
                             <div class="float-right mb-2">
                                 <a href="{{ route('course.create') }}" class="btn btn-sm btn-success">
                                     <i class="fa fa-fw fa-plus"></i>
