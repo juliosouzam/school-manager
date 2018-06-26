@@ -4,7 +4,11 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Lista de Alunos</div>
+                    <div class="card-header">
+                        <h4 class="m-t-10">
+                            Lista de Alunos
+                        </h4>
+                    </div>
                     <div class="card-body">
                         <table class="table table-striped table-hover">
                             <div class="float-right mb-2">
@@ -15,10 +19,9 @@
                             </div>
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">Matrícula</th>
                                     <th scope="col">Nome do Aluno</th>
                                     <th scope="col">Curso</th>
-                                    <th scope="col">Matrícula</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Ações</th>
                                 </tr>
@@ -26,12 +29,11 @@
                             <tbody>
                                 @foreach ($students as $student)
                                     <tr>
-                                        <th scope="row">{{ $student->id }}</th>
+                                        <td scope="row">{{ $student->registry }}</td>
                                         <td>{{ $student->name }}</td>
                                         <td>
                                             <a href="{{ route('course.show', $student->course->id) }}">{{ $student->course->name }}</a>
                                         </td>
-                                        <td>{{ $student->registry }}</td>
                                         <td>{{ $student->getStatusName() }}</td>
                                         <td>
                                             <a href="{{ route('student.show', $student->id) }}" class="btn btn-sm btn-info">
@@ -97,7 +99,7 @@
     @if (session('status'))
     const toast = swal.mixin({
         toast: true,
-        position: 'bottom-end',
+        position: 'top-end',
         showConfirmButton: false,
         timer: 4000
     });

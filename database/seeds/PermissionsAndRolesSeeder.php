@@ -20,6 +20,12 @@ class PermissionsAndRolesSeeder extends Seeder
                 'slug' => 'administrator',
                 'type' => 1
             ]);
+
+            Role::create([
+                'name' => 'Funcionario',
+                'slug' => 'officer',
+                'type' => 2
+            ]);
         }
 
         if (is_null(Group::first())) {

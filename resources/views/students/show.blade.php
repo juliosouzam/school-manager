@@ -8,7 +8,8 @@
                     <div class="card-header bg-info">
                         <div class="float-left">
                             <h4 class="m-t-10 text-white">
-                                Visualizar aluno
+                                <i class="fa fa-fw fa-eye"></i>
+                                Visualizar Aluno
                             </h4>
                         </div>
                     </div>
@@ -27,13 +28,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-8">
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-12">
-                                                <b>Nome:</b>
+                                                <b>Curso:</b>
                                             </label>
                                             <div class="col-md-12">
-                                                <p>{{ $student->name }}</p>
+                                                <p>
+                                                    <a href="{{ route('course.show', $student->course->id) }}">{{ $student->course->name }}</a>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -42,10 +45,10 @@
                                     <div class="col-md-4">
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-12">
-                                                <b>Semestre:</b>
+                                                <b>Nome:</b>
                                             </label>
                                             <div class="col-md-12">
-                                                {{ $student->semester }}
+                                                <p>{{ $student->name }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -62,12 +65,10 @@
                                     <div class="col-md-4">
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-12">
-                                                <b>Curso:</b>
+                                                <b>Semestre:</b>
                                             </label>
                                             <div class="col-md-12">
-                                                <p>
-                                                    <a href="{{ route('course.show', $student->course->id) }}">{{ $student->course->name }}</a>
-                                                </p>
+                                                {{ $student->semester }}
                                             </div>
                                         </div>
                                     </div>
@@ -105,16 +106,16 @@
 
     <script type="text/javascript">
     @if (session('error'))
-        swal({
-            type: 'error',
-            title: 'Oops...',
-            text: '{{ session('error') }}',
-        });
+    swal({
+        type: 'error',
+        title: 'Oops...',
+        text: '{{ session('error') }}',
+    });
     @endif
     @if (session('status'))
     const toast = swal.mixin({
         toast: true,
-        position: 'bottom-end',
+        position: 'top-end',
         showConfirmButton: false,
         timer: 4000
     });

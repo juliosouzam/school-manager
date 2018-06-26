@@ -8,7 +8,8 @@
                     <div class="card-header bg-info">
                         <div class="float-left">
                             <h4 class="m-t-10 text-white">
-                                Informação
+                                <i class="fa fa-fw fa-eye"></i>
+                                Visualizar Curso
                             </h4>
                         </div>
                     </div>
@@ -79,7 +80,6 @@
                         <div class="card-body">
                             <table class="table table-striped table-hover">
                                 <thead class="thead-inverse">
-                                    <th>#</th>
                                     <th>Nome</th>
                                     <th>Matrícula</th>
                                     <th>Semestre</th>
@@ -88,13 +88,45 @@
                                 <tbody>
                                     @foreach ($course->students as $student)
                                         <tr>
-                                            <td>{{ $student->id }}</td>
                                             <td>
                                                 <a href="{{ route('student.show', $student->id) }}">{{ $student->name }}</a>
                                             </td>
                                             <td>{{ $student->registry }}</td>
                                             <td>{{ $student->semester }}</td>
                                             <td>{{ $student->updated_at->format('d/m/Y H:i') }}</td>
+                                            <td>
+                                                <a href="{{ route('student.show', $student->id) }}" class="btn btn-sm btn-info">
+                                                    <i class="fa fa-fw fa-eye"></i>
+                                                </a>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDeleteStudent-{{ $student->id }}">
+                                                    <i class="fa fa-fw fa-trash"></i>
+                                                </button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="modalDeleteStudent-{{ $student->id }}" tabindex="-1" role="dialog"aria-labelledby="modalDeleteStudentLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="modalDeleteStudentLabel">Remover curso</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Deseja realmente remover o aluno <b>{{ $student->name }}</b>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                                <button type="button" class="btn btn-danger"  onclick="event.preventDefault();document.getElementById('form-destroy-student-{{ $student->id }}').submit();">Sim, quero remover</button>
+                                                                <form id="form-destroy-student-{{ $student->id }}" action="{{ route('student.destroy', $student->id) }}" method="post" accept-charset="utf-8">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -135,7 +167,7 @@
     @if (session('status'))
     const toast = swal.mixin({
         toast: true,
-        position: 'bottom-end',
+        position: 'top-end',
         showConfirmButton: false,
         timer: 4000
     });

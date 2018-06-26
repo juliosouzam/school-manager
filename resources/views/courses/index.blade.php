@@ -4,7 +4,11 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Lista de Cursos</div>
+                    <div class="card-header">
+                        <h4 class="m-t-10">
+                            Lista de Cursos
+                        </h4>
+                    </div>
                     <div class="card-body">
                         <table class="table table-striped table-hover">
                             <div class="float-right mb-2">
@@ -15,7 +19,6 @@
                             </div>
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
                                     <th scope="col">Cód. Curso</th>
                                     <th scope="col">Nome do Curso</th>
                                     <th scope="col">Instituição Ens.</th>
@@ -26,8 +29,7 @@
                             <tbody>
                                 @foreach ($courses as $course)
                                     <tr>
-                                        <th scope="row">{{ $course->id }}</th>
-                                        <td>{{ $course->cod_course }}</td>
+                                        <td scope="row">{{ $course->cod_course }}</td>
                                         <td>{{ $course->name }}</td>
                                         <td>{{ $course->institution }}</td>
                                         <td>{{ $course->updated_at->format('d/m/Y H:i') }}</td>
@@ -51,6 +53,7 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             Deseja realmente remover o curso de <b>{{ $course->name }}</b>
+                                                            <h4><p>Aviso! Será deletado todos os alunos vinculado a esse curso.</p></h4>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -107,7 +110,7 @@
     @if ($courses->count() == 0)
         const toast = swal.mixin({
             toast: true,
-            position: 'bottom-end',
+            position: 'top-end',
             showConfirmButton: false,
             timer: 4000
         });
