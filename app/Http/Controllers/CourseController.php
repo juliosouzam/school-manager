@@ -100,6 +100,12 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $this->authorize('course.destroy');
+        
+        if ($course->delete()) {
+            return redirect()->back()->with('status', 'Curso deletado com sucesso!');
+        }
+
+        return redirect()->back()->with('error', 'Curso nao pôde ser deletado!');
     }
 }
