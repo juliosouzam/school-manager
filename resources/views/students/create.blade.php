@@ -102,3 +102,30 @@
     </div>
 </div>
 @endsection
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('vendor/sweetalert2/sweetalert2.min.css') }}">
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('vendor/js/jquery.js') }}" charset="utf-8"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" charset="utf-8"></script> --}}
+    <script src="{{ asset('vendor/sweetalert2/sweetalert2.min.js') }}" charset="utf-8"></script>
+
+    <script type="text/javascript">
+    @if (session('error'))
+        swal({
+            type: 'error',
+            title: 'Oops...',
+            text: '{{ session('error') }}',
+        });
+    @endif
+    @if (session('status'))
+        swal({
+            type: 'success',
+            title: 'Sucesso!',
+            text: '{{ session('status') }}',
+        });
+    @endif
+    </script>
+@endpush
