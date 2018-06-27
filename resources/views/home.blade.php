@@ -16,7 +16,14 @@
 
                     <div class="text-center">
                         <h3>Bem vindo ao School Manager!</h3>
-                        <p>Aqui, você poderá cadastrar cursos e alunos, visualizar os cursos, dados dos alunos,atualizar registro e se quiser, até deleta-los.</p>
+                        <p>Aqui, você poderá cadastrar cursos e alunos, visualizar os cursos, dados dos alunos, atualizar registro e se quiser, até deleta-los...<br>
+                            <span class="text-danger">
+                                <b>
+                                    <i class="fa fa-fw fa-lock"></i>
+                                    Com autorização...
+                                </b>
+                            </span>
+                        </p>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
         <div class="col-10">
             <div class="card">
                 <div class="card-header">
-                    <h4>Conta: usuário <b>{{ $user->name }}</b></h4>
+                    <h4>Usuário <b>{{ $user->name }}</b></h4>
                 </div>
 
                 <div class="card-body">
