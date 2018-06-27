@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('courses', Course::all());
         });
 
-        View::composer(['settings.profile.edit'], function($view){
+        View::composer(['settings.profile.edit', 'settings.profile.create'], function($view){
             $view->with('groups', Role::all());
         });
     }

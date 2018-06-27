@@ -6,9 +6,11 @@
         <div class="col-10">
             <div class="card">
                 <div class="card-header">
-                    <div class="row align-items-center">
-                        <h4>Usuário <b>{{ $user->name }}</b></h4>
-                        <div class="float-right">
+                    <div class="row">
+                        <div class="col-10">
+                            <h4>Usuário <b>{{ $user->name }}</b></h4>
+                        </div>
+                        <div class="col-2">
                             <a href="{{ route('profile.create') }}" class="btn btn-success btn-sm">
                                 <i class="fa fa-fw fa-plus"></i>
                                 Adicionar usuário

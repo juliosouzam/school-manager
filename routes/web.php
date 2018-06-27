@@ -31,6 +31,7 @@ Route::prefix('admin')->middleware('auth')->group(function(){
     Route::prefix('settings')->group(function(){
         Route::get('profile/edit/{user}', 'ProfileController@edit')->name('profile.edit');
         Route::get('profile/create', 'ProfileController@create')->name('profile.create');
+        Route::post('profile/store', 'ProfileController@store')->name('profile.store');
         Route::get('profile/{user}', 'ProfileController@show')->name('profile.show');
         Route::put('profile/update/{user}', 'ProfileController@update')->name('profile.update');
         Route::put('profile/update/password/{user}', 'ProfileController@updatePassword')->name('profile.update.password');

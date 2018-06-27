@@ -3,6 +3,7 @@
 namespace School\Http\Controllers;
 
 use Illuminate\Http\Request;
+use School\Http\Requests\StoreProfileRequest;
 use School\Http\Requests\UpdatePasswordRequest;
 use School\User;
 
@@ -37,9 +38,13 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProfileRequest $request)
     {
-        //
+        $this->authorize('user.store');
+
+        $request = $request->only(['name', 'email', 'password', 'role_id']);
+
+        dd($request);
     }
 
     /**

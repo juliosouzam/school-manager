@@ -31,6 +31,7 @@ class PermissionsAndRolesSeeder extends Seeder
         if (is_null(Group::first())) {
             Group::create(['name' => 'Aluno', 'nick' => 'students']);
             Group::create(['name' => 'Cursos', 'nick' => 'courses']);
+            Group::create(['name' => 'Usuários', 'nick' => 'users']);
         }
 
         if (is_null(Permission::first())) {
@@ -49,6 +50,14 @@ class PermissionsAndRolesSeeder extends Seeder
             Permission::create(['name'=> 'Visualizar Curso', 'slug' => 'course.show', 'group_id' => Group::where('nick', 'courses')->first()->id]);
             Permission::create(['name'=> 'Atualizar Cursos', 'slug' => 'course.update', 'group_id' => Group::where('nick', 'courses')->first()->id]);
             Permission::create(['name'=> 'Excluir Cursos', 'slug' => 'course.destroy', 'group_id' => Group::where('nick', 'courses')->first()->id]);
+
+            Permission::create(['name'=> 'Acesso Usuários', 'slug' => 'user.index', 'group_id' => Group::where('nick', 'users')->first()->id]);
+            Permission::create(['name'=> 'Adicionar Usuários', 'slug' => 'user.create', 'group_id' => Group::where('nick', 'users')->first()->id]);
+            Permission::create(['name'=> 'Salvar Usuários', 'slug' => 'user.store', 'group_id' => Group::where('nick', 'users')->first()->id]);
+            Permission::create(['name'=> 'Editar Usuários', 'slug' => 'user.edit', 'group_id' => Group::where('nick', 'users')->first()->id]);
+            Permission::create(['name'=> 'Visualizar Usuários', 'slug' => 'user.show', 'group_id' => Group::where('nick', 'users')->first()->id]);
+            Permission::create(['name'=> 'Atualizar Usuários', 'slug' => 'user.update', 'group_id' => Group::where('nick', 'users')->first()->id]);
+            Permission::create(['name'=> 'Excluir Usuários', 'slug' => 'user.destroy', 'group_id' => Group::where('nick', 'users')->first()->id]);
         }
     }
 }
