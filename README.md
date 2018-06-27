@@ -73,4 +73,10 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+A pipeline do Bitbucket já está adicionada e configurada.
+Todo commit que cair nas branchs master ou develop, será feito uma bateria de testes e se na master ocorrer tudo sem erros, ele 'automágicamente', subirá para o [Heroku](https://www.heroku.com/).
+Para isso ocorrer com sucesso, precisará que só configure as variáveis de ambiente no próprio bitbucket.
+```
+HEROKU_API_KEY = Api Key do Heroku
+HEROKU_APP_NAME = Nome da aplicação do Heroku
+```
