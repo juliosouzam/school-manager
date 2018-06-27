@@ -86,10 +86,12 @@
                             <div class="form-actions">
                                 <div class="col-12">
                                     <div class="float-right">
-                                        <button type="submit" class="btn btn-success" name="button">
-                                            <i class="fa fa-pencil"></i>
-                                            Atualizar
-                                        </button>
+                                        @can ('student.edit')
+                                            <button type="submit" class="btn btn-success" name="button">
+                                                <i class="fa fa-pencil"></i>
+                                                Atualizar
+                                            </button>
+                                        @endcan
                                         <a href="{{ route('student.show', $student->id) }}" class="btn btn-secondary">
                                             Voltar
                                         </a>

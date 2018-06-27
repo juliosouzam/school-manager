@@ -12,10 +12,12 @@
                     <div class="card-body">
                         <table class="table table-striped table-hover table-responsive-sm">
                             <div class="float-right mb-2">
-                                <a href="{{ route('student.create') }}" class="btn btn-sm btn-success">
-                                    <i class="fa fa-fw fa-plus"></i>
-                                    Adicionar
-                                </a>
+                                @can ('student.store')
+                                    <a href="{{ route('student.create') }}" class="btn btn-sm btn-success">
+                                        <i class="fa fa-fw fa-plus"></i>
+                                        Adicionar
+                                    </a>
+                                @endcan
                             </div>
                             <thead>
                                 <tr>
@@ -38,13 +40,17 @@
                                         <td>{{ $student->getStatusName() }}</td>
                                         <td>{{ $student->updated_at->format('d/m/Y H:i') }}</td>
                                         <td>
-                                            <a href="{{ route('student.show', $student->id) }}" class="btn btn-sm btn-info">
-                                                <i class="fa fa-fw fa-eye"></i>
-                                            </a>
+                                            @can ('student.show')
+                                                <a href="{{ route('student.show', $student->id) }}" class="btn btn-sm btn-info">
+                                                    <i class="fa fa-fw fa-eye"></i>
+                                                </a>
+                                            @endcan
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDeleteStudent-{{ $student->id }}">
-                                                <i class="fa fa-fw fa-trash"></i>
-                                            </button>
+                                            @can ('student.destroy')
+                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDeleteStudent-{{ $student->id }}">
+                                                    <i class="fa fa-fw fa-trash"></i>
+                                                </button>
+                                            @endcan
                                             <!-- Modal -->
                                             <div class="modal fade" id="modalDeleteStudent-{{ $student->id }}" tabindex="-1" role="dialog"aria-labelledby="modalDeleteStudentLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -90,19 +96,19 @@
     @include('partials.messagers_sweetalert')
 
     <script type="text/javascript">
-        @if ($students->count() == 0)
-            const toast = swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 4000
-            });
+    @if ($students->count() == 0)
+    const toast = swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 4000
+    });
 
-            toast({
-                type: 'info',
-                title: 'Informãção!',
-                text: 'Nenhum aluno encontrado!'
-            });
-        @endif
+    toast({
+        type: 'info',
+        title: 'Informãção!',
+        text: 'Nenhum aluno encontrado!'
+    });
+    @endif
     </script>
 @endpush

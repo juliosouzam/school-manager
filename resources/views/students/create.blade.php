@@ -63,9 +63,9 @@
                                             <div class="col-12">
                                                 <select class="form-control" name="status">
                                                     <option value="">Escolha um...</option>
-                                                    <option value="0" {{ (old('status') == 0 ) ? 'selected':'' }}>Matriculado</option>
-                                                    <option value="1" {{ (old('status') == 1 ) ? 'selected':'' }}>Trancado</option>
-                                                    <option value="2" {{ (old('status') == 2 ) ? 'selected':'' }}>Jubilado</option>
+                                                    <option value="0" {{ (old('status') && old('status') == 0 ) ? 'selected':'' }}>Matriculado</option>
+                                                    <option value="1" {{ (old('status') && old('status') == 1 ) ? 'selected':'' }}>Trancado</option>
+                                                    <option value="2" {{ (old('status') && old('status') == 2 ) ? 'selected':'' }}>Jubilado</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -85,10 +85,12 @@
                             <div class="form-actions">
                                 <div class="col-12">
                                     <div class="float-right">
-                                        <button type="submit" class="btn btn-success" name="button">
-                                            <i class="fa fa-pencil"></i>
-                                            Salvar
-                                        </button>
+                                        @can ('student.store')
+                                            <button type="submit" class="btn btn-success" name="button">
+                                                <i class="fa fa-pencil"></i>
+                                                Salvar
+                                            </button>
+                                        @endcan
                                         <a href="{{ route('student.index') }}" class="btn btn-secondary">
                                             Voltar
                                         </a>

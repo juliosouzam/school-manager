@@ -77,10 +77,12 @@
                             <div class="form-actions">
                                 <div class="col-12">
                                     <div class="float-right">
-                                        <a href="{{ route('student.edit', $student->id) }}" class="btn btn-warning">
-                                            <i class="fa fa-pencil"></i>
-                                            Editar
-                                        </a>
+                                        @can ('student.edit')
+                                            <a href="{{ route('student.edit', $student->id) }}" class="btn btn-warning">
+                                                <i class="fa fa-pencil"></i>
+                                                Editar
+                                            </a>
+                                        @endcan
                                         <a href="{{ route('student.index') }}" class="btn btn-secondary">
                                             Voltar
                                         </a>
@@ -100,5 +102,5 @@
 @endpush
 
 @push('scripts')
-   @include('partials.messagers_sweetalert')
+    @include('partials.messagers_sweetalert')
 @endpush
