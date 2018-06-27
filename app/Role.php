@@ -21,4 +21,9 @@ class Role extends Model
     {
         return $this->type == 1;
     }
+
+    public function officer()
+    {
+        return $this->type == 2;
+    }
 }

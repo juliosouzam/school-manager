@@ -27,4 +27,11 @@ Route::prefix('admin')->middleware('auth')->group(function(){
         Route::put('/student/update/{student}', 'StudentController@update')->name('student.update');
         Route::delete('/student/destroy/{student}', 'StudentController@destroy')->name('student.destroy');
     });
+
+    Route::prefix('settings')->group(function(){
+        Route::get('profile/edit/{user}', 'ProfileController@edit')->name('profile.edit');
+        Route::get('profile/{user}', 'ProfileController@show')->name('profile.show');
+        Route::put('profile/update/{user}', 'ProfileController@update')->name('profile.update');
+        Route::put('profile/update/password/{user}', 'ProfileController@updatePassword')->name('profile.update.password');
+    });
 });

@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-10">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="m-t-10">
@@ -86,44 +86,23 @@
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('vendor/js/jquery.js') }}" charset="utf-8"></script>
-    {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" charset="utf-8"></script> --}}
-    <script src="{{ asset('vendor/sweetalert2/sweetalert2.min.js') }}" charset="utf-8"></script>
+
+    @include('partials.messagers_sweetalert')
 
     <script type="text/javascript">
-    @if (session('error'))
-    swal({
-        type: 'error',
-        title: 'Oops...',
-        text: '{{ session('error') }}',
-    });
-    @endif
-    @if (session('status'))
-    const toast = swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 4000
-    });
+        @if ($students->count() == 0)
+            const toast = swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 4000
+            });
 
-    toast({
-        type: 'success',
-        title: '{{ session('status') }}'
-    });
-    @endif
-
-    @if ($students->count() == 0)
-        const toast = swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 4000
-        });
-
-        toast({
-            type: 'info',
-            title: 'Nenhum aluno encontrado!'
-        });
-    @endif
+            toast({
+                type: 'info',
+                title: 'Informãção!',
+                text: 'Nenhum aluno encontrado!'
+            });
+        @endif
     </script>
 @endpush

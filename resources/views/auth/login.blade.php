@@ -21,7 +21,7 @@
 <body>
     <div class="container mt-5">
         <div class="row justify-content-md-center">
-            <div class="col-md-6">
+            <div class="col-6">
                 <div class="card">
                     <div class="card-header bg-primary text-center text-white">
                         <h5>
@@ -36,7 +36,7 @@
                             <div class="form-group row offset-1">
                                 <label for="email" class="col-sm-4 col-form-label">{{ __('E-mail') }}</label>
 
-                                <div class="col-md-10">
+                                <div class="col-10">
                                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                                     @if ($errors->has('email'))
@@ -48,9 +48,9 @@
                             </div>
 
                             <div class="form-group row offset-1">
-                                <label for="password" class="col-md-4 col-form-label">{{ __('Senha') }}</label>
+                                <label for="password" class="col-4 col-form-label">{{ __('Senha') }}</label>
 
-                                <div class="col-md-10">
+                                <div class="col-10">
                                     <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                     @if ($errors->has('password'))
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="form-group row offset-1">
-                                <div class="col-md-6">
+                                <div class="col-6">
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Lembrar me') }}
@@ -71,7 +71,7 @@
                             </div>
 
                             <div class="form-group row mb-0 offset-1">
-                                <div class="col-md-10">
+                                <div class="col-10">
                                     <button type="submit" class="btn btn-primary btn-block">
                                         {{ __('Entrar') }}
                                     </button>

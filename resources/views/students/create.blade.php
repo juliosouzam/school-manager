@@ -109,25 +109,5 @@
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('vendor/js/jquery.js') }}" charset="utf-8"></script>
-    {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" charset="utf-8"></script> --}}
-    <script src="{{ asset('vendor/sweetalert2/sweetalert2.min.js') }}" charset="utf-8"></script>
-
-    <script type="text/javascript">
-    @if (session('error'))
-    swal({
-        type: 'error',
-        title: 'Oops...',
-        text: '{{ session('error') }}',
-    });
-    @endif
-
-    @if ($errors->any())
-    swal({
-        type: 'error',
-        title: 'Ops...',
-        html: '@foreach ($errors->all() as $error){!! $error ."<br>" !!}@endforeach',
-    });
-    @endif
-    </script>
+    @include('partials.messagers_sweetalert')
 @endpush

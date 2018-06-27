@@ -17,32 +17,42 @@
                         <form class="form-horizontal" role="form">
                             <div class="form-body">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group row">
-                                            <label class="control-label text-left col-md-5" style="margin-right: -30px;">Cód. Curso:</label>
-                                            <div class="col-md-7">
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label class="control-label text-left col-12" style="margin-right: -30px;">Cód. Curso:</label>
+                                            <div class="col-12">
                                                 <p class="form-control-static">
                                                     <b>{{ $course->cod_course }}</b>
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group row">
-                                            <label class="control-label text-left col-md-2" style="margin-right: -30px;">Nome:</label>
-                                            <div class="col-md-10">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="control-label text-left col-12" style="margin-right: -30px;">Nome:</label>
+                                            <div class="col-12">
                                                 <p class="form-control-static">
                                                     <b>{{ str_limit($course->name, 100) }}</b>
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <div class="col-12 text-right">
+                                                <a href="{{ route('student.create') }}" class="btn btn-sm btn-success">
+                                                    <i class="fa fa-fw fa-user"></i>
+                                                    Adicionar aluno
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="form-group row">
-                                            <label class="control-label text-left col-md-4" style="margin-right: -30px;">Instituição:</label>
-                                            <div class="col-md-7">
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <label class="control-label text-left col-4" style="margin-right: -30px;">Instituição:</label>
+                                            <div class="col-7">
                                                 <p class="form-control-static">
                                                     <b>{{ $course->institution }}</b>
                                                 </p>
@@ -146,36 +156,7 @@
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('vendor/js/jquery.js') }}" charset="utf-8"></script>
-    <script src="{{ asset('vendor/sweetalert2/sweetalert2.min.js') }}" charset="utf-8"></script>
+   
+   @include('partials.messagers_sweetalert')
 
-    <script type="text/javascript">
-    @if (session('error'))
-    const toast = swal.mixin({
-        toast: true,
-        position: 'bottom-end',
-        showConfirmButton: false,
-        timer: 4000
-    });
-
-    toast({
-        type: 'error',
-        title: '{{ session('error') }}'
-    });
-    @endif
-
-    @if (session('status'))
-    const toast = swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 4000
-    });
-
-    toast({
-        type: 'success',
-        title: '{{ session('status') }}'
-    });
-    @endif
-    </script>
 @endpush

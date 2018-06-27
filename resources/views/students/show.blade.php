@@ -18,22 +18,22 @@
                             @csrf
                             <div class="form-body">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-4">
                                         <div class="form-group row">
-                                            <label class="control-label text-left col-md-12">
+                                            <label class="control-label text-left col-12">
                                                 <b>Matrícula:</b>
                                             </label>
-                                            <div class="col-md-12">
+                                            <div class="col-12">
                                                 <p>{{ $student->registry }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-8">
                                         <div class="form-group row">
-                                            <label class="control-label text-left col-md-12">
+                                            <label class="control-label text-left col-12">
                                                 <b>Curso:</b>
                                             </label>
-                                            <div class="col-md-12">
+                                            <div class="col-12">
                                                 <p>
                                                     <a href="{{ route('course.show', $student->course->id) }}">{{ $student->course->name }}</a>
                                                 </p>
@@ -42,32 +42,32 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-4">
                                         <div class="form-group row">
-                                            <label class="control-label text-left col-md-12">
+                                            <label class="control-label text-left col-12">
                                                 <b>Nome:</b>
                                             </label>
-                                            <div class="col-md-12">
+                                            <div class="col-12">
                                                 <p>{{ $student->name }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-4">
                                         <div class="form-group row">
-                                            <label class="control-label text-left col-md-12">
+                                            <label class="control-label text-left col-12">
                                                 <b>Status:</b>
                                             </label>
-                                            <div class="col-md-12">
+                                            <div class="col-12">
                                                 <p>{{ $student->getStatusName() }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-4">
                                         <div class="form-group row">
-                                            <label class="control-label text-left col-md-12">
+                                            <label class="control-label text-left col-12">
                                                 <b>Semestre:</b>
                                             </label>
-                                            <div class="col-md-12">
+                                            <div class="col-12">
                                                 {{ $student->semester }}
                                             </div>
                                         </div>
@@ -100,30 +100,5 @@
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('vendor/js/jquery.js') }}" charset="utf-8"></script>
-    {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" charset="utf-8"></script> --}}
-    <script src="{{ asset('vendor/sweetalert2/sweetalert2.min.js') }}" charset="utf-8"></script>
-
-    <script type="text/javascript">
-    @if (session('error'))
-    swal({
-        type: 'error',
-        title: 'Oops...',
-        text: '{{ session('error') }}',
-    });
-    @endif
-    @if (session('status'))
-    const toast = swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 4000
-    });
-
-    toast({
-        type: 'success',
-        title: '{{ session('status') }}'
-    });
-    @endif
-    </script>
+   @include('partials.messagers_sweetalert')
 @endpush

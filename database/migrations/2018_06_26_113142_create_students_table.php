@@ -14,7 +14,7 @@ class CreateStudentsTable extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->unsignedBigInteger('id')->autoIncrement();
+            $table->increments('id');
             $table->string('name');
             $table->integer('registry');
             $table->integer('semester');
@@ -23,7 +23,7 @@ class CreateStudentsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('course_id')->references('id')->on('courses')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
         });
     }
 

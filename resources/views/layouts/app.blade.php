@@ -64,8 +64,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @if (true)
-                                        <a class="dropdown-item" href="#">Config</a>
+                                    <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id) }}">
+                                        <i class="fa fa-fw fa-user"></i>
+                                        Perfil
+                                    </a>
+                                    @if (auth()->user()->role->isAdmin())
+                                         <a class="dropdown-item" href="#">
+                                            <i class="fa fa-fw fa-user"></i>
+                                            Grupos
+                                        </a>
                                     @endif
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
