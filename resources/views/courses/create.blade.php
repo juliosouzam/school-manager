@@ -55,10 +55,12 @@
                             <div class="form-actions">
                                 <div class="col-12">
                                     <div class="float-right">
-                                        <button type="submit" class="btn btn-success" name="button">
-                                            <i class="fa fa-pencil"></i>
-                                            Salvar
-                                        </button>
+                                        @can ('course.store')
+                                            <button type="submit" class="btn btn-success" name="button">
+                                                <i class="fa fa-pencil"></i>
+                                                Salvar
+                                            </button>
+                                        @endcan
                                         <a href="{{ route('course.index') }}" class="btn btn-secondary">
                                             Voltar
                                         </a>

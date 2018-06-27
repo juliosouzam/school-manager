@@ -37,16 +37,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-3">
-                                        <div class="form-group">
-                                            <div class="col-12 text-right">
-                                                <a href="{{ route('student.create') }}" class="btn btn-sm btn-success">
-                                                    <i class="fa fa-fw fa-user"></i>
-                                                    Adicionar aluno
-                                                </a>
+                                    @can ('student.store')
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <div class="col-12 text-right">
+                                                    <a href="{{ route('student.create') }}" class="btn btn-sm btn-success">
+                                                        <i class="fa fa-fw fa-user"></i>
+                                                        Adicionar aluno
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endcan
                                 </div>
                                 <div class="row">
                                     <div class="col-5">
@@ -64,10 +66,12 @@
                             <div class="form-actions">
                                 <div class="col-12">
                                     <div class="float-right">
-                                        <a href="{{ route('course.edit', $course->id) }}" class="btn btn-warning">
-                                            <i class="fa fa-pencil"></i>
-                                            Editar
-                                        </a>
+                                        @can ('course.edit')
+                                            <a href="{{ route('course.edit', $course->id) }}" class="btn btn-warning">
+                                                <i class="fa fa-pencil"></i>
+                                                Editar
+                                            </a>
+                                        @endcan
                                         <a href="{{ route('course.index') }}" class="btn btn-secondary">
                                             Voltar
                                         </a>
@@ -156,7 +160,7 @@
 @endpush
 
 @push('scripts')
-   
-   @include('partials.messagers_sweetalert')
+
+    @include('partials.messagers_sweetalert')
 
 @endpush
