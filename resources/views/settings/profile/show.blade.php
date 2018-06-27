@@ -6,7 +6,15 @@
         <div class="col-10">
             <div class="card">
                 <div class="card-header">
-                    <h4>Usuário <b>{{ $user->name }}</b></h4>
+                    <div class="row align-items-center">
+                        <h4>Usuário <b>{{ $user->name }}</b></h4>
+                        <div class="float-right">
+                            <a href="{{ route('profile.create') }}" class="btn btn-success btn-sm">
+                                <i class="fa fa-fw fa-plus"></i>
+                                Adicionar usuário
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -28,10 +36,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-5">
                                     <div class="form-group row">
-                                        <label class="control-label text-left col-5" style="margin-right: -30px;">E-mail:</label>
-                                        <div class="col-7">
+                                        <label class="control-label text-left col-3" style="margin-right: -30px;">E-mail:</label>
+                                        <div class="col-9">
                                             <p class="form-control-static">
                                                 <b>{{ $user->email }}</b>
                                             </p>
