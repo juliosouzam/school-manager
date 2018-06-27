@@ -58,7 +58,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                        <button type="button" class="btn btn-danger"  onclick="event.preventDefault();document.getElementById('form-destroy-course-{{ $course->id }}').submit();">Sim, quero remover</button>
+                                                        <button type="button" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('form-destroy-course-{{ $course->id }}').submit();">Sim, quero remover</button>
                                                         <form id="form-destroy-course-{{ $course->id }}" action="{{ route('course.destroy', $course->id) }}" method="post" accept-charset="utf-8">
                                                             @csrf
                                                             @method('DELETE')

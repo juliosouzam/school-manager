@@ -34,7 +34,7 @@ class StoreProfileRequest extends FormRequest
 
     public function messages()
     {
-        retunr [
+        return [
             'name.required' => 'O campo Nome é obrigatório.',
             'email.required' => 'O campo E-mail é obrigatório.',
             'email.email' => 'O campo E-mail deve ter um e-mail válido.',

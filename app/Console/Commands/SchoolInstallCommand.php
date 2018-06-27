@@ -59,11 +59,14 @@ class SchoolInstallCommand extends Command
             $continue = $this->confirm('Os dados estão corretos?');
         }
 
-        $this->callSilent('key:generate');
-        $this->callSilent('migrate:fresh');
-        $this->callSilent('migrate', [
+        $this->call('key:generate');
+        $this->info("1");
+        $this->call('migrate:fresh');
+        $this->info("2");
+        $this->call('migrate', [
             '--seed' => true
         ]);
+        $this->info("3");
 
         \School\User::create([
             'name' => $name,

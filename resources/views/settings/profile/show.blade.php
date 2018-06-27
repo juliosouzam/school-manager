@@ -7,15 +7,23 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-8">
                             <h4>Usuário <b>{{ $user->name }}</b></h4>
                         </div>
-                        <div class="col-2">
-                            <a href="{{ route('profile.create') }}" class="btn btn-success btn-sm">
-                                <i class="fa fa-fw fa-plus"></i>
-                                Adicionar usuário
-                            </a>
-                        </div>
+                        @if (auth()->user()->role->isAdmin())
+                          <div class="col-4">
+                              @can ('user.index')
+                                  <a href="{{ route('profile.index') }}" class="btn btn-info btn-sm">
+                                      <i class="fa fa-fw fa-list"></i>
+                                      Listar usuários
+                                  </a>
+                              @endcan
+                              <a href="{{ route('profile.create') }}" class="btn btn-success btn-sm">
+                                  <i class="fa fa-fw fa-plus"></i>
+                                  Adicionar usuário
+                              </a
+                          </div>
+                        @endif
                     </div>
                 </div>
 
@@ -38,20 +46,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-4">
                                     <div class="form-group row">
-                                        <label class="control-label text-left col-3" style="margin-right: -30px;">E-mail:</label>
-                                        <div class="col-9">
+                                        <label class="control-label text-left col-4" style="margin-right: -30px;">E-mail:</label>
+                                        <div class="col-8">
                                             <p class="form-control-static">
                                                 <b>{{ $user->email }}</b>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-4">
                                     <div class="form-group row">
-                                        <label class="control-label text-left col-5" style="margin-right: -30px;">Grupo:</label>
-                                        <div class="col-7">
+                                        <label class="control-label text-left col-4" style="margin-right: -30px;">Grupo:</label>
+                                        <div class="col-8">
                                             <p class="form-control-static">
                                                 <b>{{ $user->role->name }}</b>
                                             </p>
@@ -77,3 +85,11 @@
     </div>
 </div>
 @endsection
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('vendor/sweetalert2/sweetalert2.min.css') }}">
+@endpush
+
+@push('scripts')
+    @include('partials.messagers_sweetalert')
+@endpush
