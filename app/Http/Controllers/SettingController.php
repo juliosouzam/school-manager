@@ -40,6 +40,7 @@ class SettingController extends Controller
     public function store(Request $request, Role $role)
     {
         $this->authorize('role.store');
+
         $role->permissions()->sync($request->input('slug') ?? []);
 
         return redirect()->back()->with('status', 'Permissões atualizadas com sucesso!');
@@ -48,6 +49,10 @@ class SettingController extends Controller
     public function permissions(Role $role)
     {
         $this->authorize('role.index');
+
+        if (auth()->user()->role_id != 1) {
+            return redirect()->back()->with('warning', 'Você não é Administrador!');
+        }
 
         if (auth()->user()->role_id === $role->id) {
             return redirect()->back()->with('warning', 'Você é Administrador!');

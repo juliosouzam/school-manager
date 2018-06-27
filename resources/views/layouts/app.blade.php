@@ -34,18 +34,22 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <ul class="nav nav-pills">
-                                <li class="nav-item {{ Request::is('admin/student*') ? 'active':'' }}">
-                                    <a href="{{ route('student.index') }}" class="nav-link">
-                                        <i class="fa fa-fw fa-user"></i>
-                                        Alunos
-                                    </a>
-                                </li>
-                                <li class="nav-item {{ Request::is('admin/course*') ? 'active':'' }}">
-                                    <a href="{{ route('course.index') }}" class="nav-link">
-                                        <i class="fa fa-fw fa-book"></i>
-                                        Cursos
-                                    </a>
-                                </li>
+                                @can ('student.index')
+                                    <li class="nav-item {{ Request::is('admin/student*') ? 'active':'' }}">
+                                        <a href="{{ route('student.index') }}" class="nav-link">
+                                            <i class="fa fa-fw fa-user"></i>
+                                            Alunos
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can ('course.index')
+                                    <li class="nav-item {{ Request::is('admin/course*') ? 'active':'' }}">
+                                        <a href="{{ route('course.index') }}" class="nav-link">
+                                            <i class="fa fa-fw fa-book"></i>
+                                            Cursos
+                                        </a>
+                                    </li>
+                                @endcan
                             </ul>
                         @endauth
                     </ul>
@@ -64,16 +68,18 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id) }}">
-                                        <i class="fa fa-fw fa-user"></i>
-                                        Perfil
-                                    </a>
-                                    @if (auth()->user()->role->isAdmin())
+                                    @can ('user.show')
+                                        <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id) }}">
+                                            <i class="fa fa-fw fa-user"></i>
+                                            Perfil
+                                        </a>
+                                    @endcan
+                                    @can ('role.index')
                                         <a class="dropdown-item" href="{{ route('roles.index') }}">
                                             <i class="fa fa-fw fa-users"></i>
                                             Grupos
                                         </a>
-                                    @endif
+                                    @endcan
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                         {{ __('Sair') }}

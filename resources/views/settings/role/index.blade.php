@@ -18,19 +18,23 @@
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    <th>Ações</th>
+                                    @can ('role.store')
+                                        <th>Ações</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($roles as $role)
                                     <tr>
                                         <td>{{ $role->name }}</td>
-                                        <td>
-                                            <a href="{{ route('roles.permission', $role->id) }}" class="btn btn-sm btn-info">
-                                                <i class="fa fa-fw fa-lock"></i>
-                                                Permissões
-                                            </a>
-                                        </td>
+                                        @can ('role.store')
+                                            <td>
+                                                <a href="{{ route('roles.permission', $role->id) }}" class="btn btn-sm btn-info">
+                                                    <i class="fa fa-fw fa-lock"></i>
+                                                    Permissões
+                                                </a>
+                                            </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                             </tbody>

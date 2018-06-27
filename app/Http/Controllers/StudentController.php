@@ -5,6 +5,7 @@ namespace School\Http\Controllers;
 use School\Student;
 use Illuminate\Http\Request;
 use School\Http\Requests\StoreStudentRequest;
+use School\Http\Requests\UpdateStudentRequest;
 
 class StudentController extends Controller
 {
@@ -87,7 +88,7 @@ class StudentController extends Controller
     * @param  \School\Student  $student
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, Student $student)
+    public function update(UpdateStudentRequest $request, Student $student)
     {
         $this->authorize('student.edit');
 

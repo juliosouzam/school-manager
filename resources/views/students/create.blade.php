@@ -63,9 +63,9 @@
                                             <div class="col-12">
                                                 <select class="form-control" name="status">
                                                     <option value="">Escolha um...</option>
-                                                    <option value="0" {{ (old('status') && old('status') == 0 ) ? 'selected':'' }}>Matriculado</option>
-                                                    <option value="1" {{ (old('status') && old('status') == 1 ) ? 'selected':'' }}>Trancado</option>
-                                                    <option value="2" {{ (old('status') && old('status') == 2 ) ? 'selected':'' }}>Jubilado</option>
+                                                    <option value="0" {{ (old('status') && old('status') === 0 ) ? 'selected':'' }}>Matriculado</option>
+                                                    <option value="1" {{ (old('status') && old('status') === 1 ) ? 'selected':'' }}>Trancado</option>
+                                                    <option value="2" {{ (old('status') && old('status') === 2 ) ? 'selected':'' }}>Jubilado</option>
                                                 </select>
                                             </div>
                                         </div>
