@@ -50,7 +50,8 @@ class ProfileController extends Controller
         if (!User::create($request)) {
             return redirect()->back()->with('error', 'Não foi possível inserir o novo usuário!');
         }
-        return redirect()->back()->with('status', 'Novo usuário cadastrado com sucesso!');
+
+        return redirect()->route('profile.index')->with('status', 'Novo usuário cadastrado com sucesso!');
     }
 
     /**
