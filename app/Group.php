@@ -16,4 +16,9 @@ class Group extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class);
+    }
 }

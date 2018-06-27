@@ -17,6 +17,11 @@ class Role extends Model
         'updated_at',
     ];
 
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
+
     public function isAdmin()
     {
         return $this->type == 1;

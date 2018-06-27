@@ -2,6 +2,14 @@
 <script src="{{ asset('vendor/sweetalert2/sweetalert2.min.js') }}" charset="utf-8"></script>
 
 <script type="text/javascript">
+
+    @if (session('warning'))
+        swal({
+            type: 'warning',
+            title: 'Wait a minute...',
+            text: '{{ session('warning') }}',
+        });
+    @endif
     @if (session('error'))
         swal({
             type: 'error',
@@ -19,7 +27,7 @@
     @endif
 
     @if (session('status'))
-         const toast = swal.mixin({
+        const toast = swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,

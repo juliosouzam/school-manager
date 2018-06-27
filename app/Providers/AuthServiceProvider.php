@@ -25,17 +25,16 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(Gate $gate)
     {
         // $this->registerPolicies();
-
         if(request()->is('admin*') && !is_null(Permission::first())) {
+
             $permissions = Permission::with('roles')->get();
 
             foreach ($permissions as $permission) {
-                $gate->define($permission->slug, function ($user) use ($permission) {
 
+                $gate->define($permission->slug, function ($user) use ($permission) {
                     if ($user->role->isAdmin() || $permission->roles->contains($user->role)) {
                         return true;
                     }
-
                     return false;
                 });
             }

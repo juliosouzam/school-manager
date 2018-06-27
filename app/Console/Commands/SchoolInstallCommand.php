@@ -50,23 +50,22 @@ class SchoolInstallCommand extends Command
 
         while (!$continue) {
             $this->info('Informações do Administrador!');
-            $name = $this->ask('Informe o nome:');
-            $email = $this->ask('Informe também seu e-mail:');
-            $password = $this->secret('Agora, uma senha forte:');
+            $name = $this->ask('Informe o nome');
+            $email = $this->ask('Informe também seu e-mail');
+            $password = $this->secret('Agora, uma senha forte');
 
             $this->table(['Nome', 'E-mail'], [[$name, $email]]);
 
             $continue = $this->confirm('Os dados estão corretos?');
         }
 
-        $this->call('key:generate');
-        $this->info("1");
-        $this->call('migrate:fresh');
-        $this->info("2");
-        $this->call('migrate', [
+        $this->info('Aguarde uns instantes...');
+
+        $this->callSilent('key:generate');
+        $this->callSilent('migrate:fresh');
+        $this->callSilent('migrate', [
             '--seed' => true
         ]);
-        $this->info("3");
 
         \School\User::create([
             'name' => $name,

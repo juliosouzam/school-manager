@@ -2,7 +2,10 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', function(){
+    return redirect()->route('home');
+});
+
 Route::get('/admin', 'HomeController@index')->name('home');
 
 
@@ -29,13 +32,22 @@ Route::prefix('admin')->middleware('auth')->group(function(){
     });
 
     Route::prefix('settings')->group(function(){
-        Route::get('profile/', 'ProfileController@index')->name('profile.index');
-        Route::get('profile/edit/{user}', 'ProfileController@edit')->name('profile.edit');
-        Route::get('profile/create', 'ProfileController@create')->name('profile.create');
-        Route::post('profile/store', 'ProfileController@store')->name('profile.store');
-        Route::get('profile/{user}', 'ProfileController@show')->name('profile.show');
-        Route::put('profile/update/{user}', 'ProfileController@update')->name('profile.update');
-        Route::put('profile/update/password/{user}', 'ProfileController@updatePassword')->name('profile.update.password');
-        Route::delete('profile/destroy/{user}', 'ProfileController@destroy')->name('profile.destroy');
+        Route::prefix('profile')->group(function(){
+            Route::get('/', 'ProfileController@index')->name('profile.index');
+            Route::get('/edit/{user}', 'ProfileController@edit')->name('profile.edit');
+            Route::get('/create', 'ProfileController@create')->name('profile.create');
+            Route::post('/store', 'ProfileController@store')->name('profile.store');
+            Route::get('/{user}', 'ProfileController@show')->name('profile.show');
+            Route::put('/update/{user}', 'ProfileController@update')->name('profile.update');
+            Route::put('/update/password/{user}', 'ProfileController@updatePassword')->name('profile.update.password');
+            Route::delete('/destroy/{user}', 'ProfileController@destroy')->name('profile.destroy');
+        });
+
+        Route::prefix('roles')->group(function(){
+            Route::get('/', 'SettingController@index')->name('roles.index');
+            Route::get('/{role}/permission', 'SettingController@permissions')->name('roles.permission');
+            Route::post('/{role}/permissions/store', 'SettingController@store')->name('roles.permission.store');
+            Route::post('/permission/store', 'SettingController@store')->name('roles.store');
+        });
     });
 });

@@ -69,8 +69,8 @@
                                         Perfil
                                     </a>
                                     @if (auth()->user()->role->isAdmin())
-                                         <a class="dropdown-item" href="#">
-                                            <i class="fa fa-fw fa-user"></i>
+                                        <a class="dropdown-item" href="{{ route('roles.index') }}">
+                                            <i class="fa fa-fw fa-users"></i>
                                             Grupos
                                         </a>
                                     @endif

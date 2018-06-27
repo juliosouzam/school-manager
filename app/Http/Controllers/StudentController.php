@@ -29,7 +29,7 @@ class StudentController extends Controller
     */
     public function create()
     {
-        $this->authorize('student.create');
+        $this->authorize('student.store');
 
         return view('students.create');
     }
@@ -89,7 +89,7 @@ class StudentController extends Controller
     */
     public function update(Request $request, Student $student)
     {
-        $this->authorize('student.update');
+        $this->authorize('student.edit');
 
         $request = $request->only(['name', 'registry', 'course_id', 'semester', 'status']);
 

@@ -29,7 +29,7 @@ class CourseController extends Controller
     */
     public function create()
     {
-        $this->authorize('course.create');
+        $this->authorize('course.store');
 
         return view('courses.create');
     }
@@ -91,7 +91,7 @@ class CourseController extends Controller
     */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        $this->authorize('course.update');
+        $this->authorize('course.edit');
 
         $request = $request->only(['cod_course', 'name', 'institution']);
 

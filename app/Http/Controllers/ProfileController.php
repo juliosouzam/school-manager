@@ -29,7 +29,7 @@ class ProfileController extends Controller
     */
     public function create()
     {
-        $this->authorize('user.create');
+        $this->authorize('user.store');
 
         return view('settings.profile.create');
     }
@@ -62,6 +62,8 @@ class ProfileController extends Controller
     */
     public function show(User $user)
     {
+        $this->authorize('user.show');
+
         if (auth()->user()->id != $user->id && !auth()->user()->role->isAdmin()) {
             return redirect()->back()->with('error', 'Você não tem permissão de acessar outros usuários!');
         }
@@ -77,6 +79,8 @@ class ProfileController extends Controller
     */
     public function edit(User $user)
     {
+        $this->authorize('user.edit');
+
         return view('settings.profile.edit', compact('user'));
     }
 
@@ -89,6 +93,8 @@ class ProfileController extends Controller
     */
     public function update(Request $request, User $user)
     {
+        $this->authorize('user.edit');
+
         $request = $request->only(['name', 'email', 'role_id']);
 
         if (!$user->update($request)) {
@@ -107,6 +113,8 @@ class ProfileController extends Controller
     */
     public function updatePassword(UpdatePasswordRequest $request, User $user)
     {
+        $this->authorize('user.edit');
+
         $request = $request->only(['password']);
         $password = \Hash::make($request['password']);
 
