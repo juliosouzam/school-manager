@@ -5,8 +5,8 @@ use School\Role;
 
 $factory->define(Role::class, function (Faker $faker) {
     return [
-        'name' => $faker->work,
-        'slug' => $faker->work,
-        'type' => rand(1, 3]),
+        'name' => $faker->word,
+        'slug' => $faker->word,
+        'type' => rand(1, 3),
     ];
 });

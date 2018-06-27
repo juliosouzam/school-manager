@@ -11,8 +11,9 @@ class UserTest extends TestCase
 
     public function testIfAuthenticatedCanViewAdmin()
     {
-        $this->actingAs($user = factory('School\User')->create());
+        $user = factory('School\User')->create();
+        $this->actingAs($user)
             ->get('/admin')
-            ->assetSee($user->name);
+            ->assertSee($user->name);
     }
 }

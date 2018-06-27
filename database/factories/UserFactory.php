@@ -17,7 +17,7 @@ $factory->define(School\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'role_id' => factory('School\Role')->create()->id,
+        'role_id' => factory('School\Role')->create(['type'=>1])->id,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
     ];
