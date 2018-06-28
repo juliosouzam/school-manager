@@ -11,6 +11,7 @@ class StudentTest extends TestCase
 
     public function testIfUnauthenticatedCantViewStudent()
     {
+        $this->withExceptionHandling();
         $student = factory('School\Student')->create();
 
         $this->get('admin/student/'.$student->id)
@@ -20,6 +21,7 @@ class StudentTest extends TestCase
 
     public function testIfUnauthenticatedCantCreateStudent()
     {
+        $this->withExceptionHandling();
         $student = factory('School\Student')->make();
 
         $this->post('/admin/student/store', $student->toArray())
@@ -29,6 +31,7 @@ class StudentTest extends TestCase
 
     public function testIfUnauthenticatedCantUpdateStudent()
     {
+        $this->withExceptionHandling();
         $student = factory('School\Student')->create();
 
         $this->put('/admin/student/update/'.$student->id, $student->toArray())
@@ -38,11 +41,11 @@ class StudentTest extends TestCase
 
     public function testIfUnauthenticatedCantDeleteStudent()
     {
+        $this->withExceptionHandling();
         $student = factory('School\Student')->create();
 
         $this->delete('/admin/student/destroy/'.$student->id, $student->toArray())
             ->assertDontSee($student->name)
             ->assertRedirect('/login');
     }
-
 }

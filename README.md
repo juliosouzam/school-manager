@@ -49,6 +49,25 @@ docker-compose exec app php artisan school:install
 Para essa aplicação, foi feito alguns testes simples, usando PHPUnit.
 Obs: O sistema não está coberto por testes, somente algumas funcionalidades simples.
 
+Tem dois meios de executar os testes.
+
+#1ª PHPUnit local.
+Você terá que ter o [PHPUnit](https://phpunit.de/getting-started/phpunit-7.html) instalado em sua máquina.
+```
+phpunit
+```
+ou se preferir, execute sem instalar
+
+```
+vendor/bin/phpunit
+```
+#2ª Usando Docker
+Você irá executar os testes dentro de ambiente da aplicação.
+Para isso, execute:
+```
+docker-compose exec app vendor/bin/phpunit
+```
+
 ## Deployment
 
 A pipeline do Bitbucket já está adicionada e configurada.

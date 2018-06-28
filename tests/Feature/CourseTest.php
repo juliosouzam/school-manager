@@ -12,6 +12,7 @@ class CourseTest extends TestCase
 
     public function testIfUnauthenticatedCantCreateCourse()
     {
+        $this->withExceptionHandling();
         $course = factory('School\Course')->make();
 
         $this->post('admin/course/store', $course->toArray())
@@ -20,6 +21,7 @@ class CourseTest extends TestCase
 
     public function testIfUnauthenticatedCantViewCourse()
     {
+        $this->withExceptionHandling();
         $course = factory('School\Course')->create();
 
         $this->get('/admin/course/'.$course->id)
@@ -29,6 +31,7 @@ class CourseTest extends TestCase
 
     public function testIfUnauthenticatedCantUpdateCourse()
     {
+        $this->withExceptionHandling();
         $course = factory('School\Course')->create();
 
         $this->put('/admin/course/update/'.$course->id, $course->toArray())
@@ -38,6 +41,7 @@ class CourseTest extends TestCase
 
     public function testIfUnauthenticatedCantDeleteCourse()
     {
+        $this->withExceptionHandling();
         $course = factory('School\Course')->create();
 
         $this->delete('/admin/course/destroy/'.$course->id, $course->toArray())
