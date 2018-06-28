@@ -52,7 +52,7 @@ Obs: O sistema não está coberto por testes, somente algumas funcionalidades si
 
 Tem dois meios de executar os testes.
 
-###1ª PHPUnit local.
+##1ª PHPUnit local.
 Você terá que ter o [PHPUnit](https://phpunit.de/getting-started/phpunit-7.html) instalado em sua máquina.
 ```
 phpunit
@@ -62,7 +62,7 @@ ou se preferir, execute sem instalar
 ```
 vendor/bin/phpunit
 ```
-###2ª Usando Docker
+##2ª Usando Docker
 Você irá executar os testes dentro de ambiente da aplicação.
 Para isso, execute:
 ```
