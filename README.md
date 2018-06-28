@@ -21,7 +21,7 @@ Depois de ter instalado os pré-requisitos, vamos instalar a aplicação.
 Primerio, clone o projeto.
 
 ```
-git clone ...
+git clone https://github.com/juliocesar64/school-manager.git
 ```
 
 Depois, entre na pasta e execute:
