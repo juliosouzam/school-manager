@@ -3,18 +3,25 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class GuestTest extends TestCase
 {
-    use DatabaseMigrations;
-    /**
-    * A basic test example.
-    *
-    * @return void
-    */
-    public function testBasicTest()
+    use RefreshDatabase;
+
+    public function testGuestCanViewLogin()
     {
-        $this->assertTrue(true);
+        $this->get('/login')
+            ->assertStatus(200)
+            ->assertSee('Entrar');
+    }
+
+    public function testGuestCantNotViewAdmin()
+    {
+        $user = factory('School\User')->create();
+
+        $this->get('/admin')
+            ->assertDontSee($user->name)
+            ->assertRedirect('/login');
     }
 }

@@ -9,17 +9,40 @@ class StudentTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testStudents()
+    public function testIfUnauthenticatedCantViewStudent()
     {
         $student = factory('School\Student')->create();
 
-        $this->assertInstanceOf('School\Student', $student);
+        $this->get('admin/student/'.$student->id)
+            ->assertDontSee($student->name)
+            ->assertRedirect('/login');
     }
 
-    public function testIfStudentHaveAnyCourse()
+    public function testIfUnauthenticatedCantCreateStudent()
+    {
+        $student = factory('School\Student')->make();
+
+        $this->post('/admin/student/store', $student->toArray())
+            ->assertDontSee($student->name)
+            ->assertRedirect('/login');
+    }
+
+    public function testIfUnauthenticatedCantUpdateStudent()
     {
         $student = factory('School\Student')->create();
 
-        $this->assertInstanceOf('School\Course', $student->course);
+        $this->put('/admin/student/update/'.$student->id, $student->toArray())
+            ->assertDontSee($student->name)
+            ->assertRedirect('/login');
     }
+
+    public function testIfUnauthenticatedCantDeleteStudent()
+    {
+        $student = factory('School\Student')->create();
+
+        $this->delete('/admin/student/destroy/'.$student->id, $student->toArray())
+            ->assertDontSee($student->name)
+            ->assertRedirect('/login');
+    }
+
 }
