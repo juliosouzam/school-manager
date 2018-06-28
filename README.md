@@ -71,7 +71,7 @@ docker-compose exec app vendor/bin/phpunit
 
 ## Deployment
 
-A pipeline do Bitbucket já está adicionada e configurada.
+A pipeline do [Bitbucket](https://bitbucket.org/) já está adicionada e configurada.
 Todo commit que cair na branch master, será executado os testes e se ocorrer tudo sem erros, ele "automágicamente", subirá para o [Heroku](https://www.heroku.com/).
 Para isso ocorrer com sucesso, precisará que só configure as variáveis de ambiente no seu próprio bitbucket.
 ```
