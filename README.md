@@ -71,8 +71,8 @@ docker-compose exec app vendor/bin/phpunit
 ## Deployment
 
 A pipeline do Bitbucket já está adicionada e configurada.
-Todo commit que cair nas branchs master ou develop, será feito uma bateria de testes e se na master ocorrer tudo sem erros, ele 'automágicamente', subirá para o [Heroku](https://www.heroku.com/).
-Para isso ocorrer com sucesso, precisará que só configure as variáveis de ambiente no próprio bitbucket.
+Todo commit que cair na branch master, será executado os testes e se ocorrer tudo sem erros, ele "automágicamente", subirá para o [Heroku](https://www.heroku.com/).
+Para isso ocorrer com sucesso, precisará que só configure as variáveis de ambiente no seu próprio bitbucket.
 ```
 HEROKU_API_KEY = Api Key do Heroku
 HEROKU_APP_NAME = Nome da aplicação do Heroku
