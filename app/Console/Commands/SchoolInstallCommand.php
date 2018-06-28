@@ -60,13 +60,13 @@ class SchoolInstallCommand extends Command
         }
 
         $this->info('Aguarde uns instantes...');
+        sleep(5);
 
         $this->callSilent('key:generate');
         $this->callSilent('migrate:fresh');
         $this->callSilent('migrate', [
             '--seed' => true
         ]);
-
         \School\User::create([
             'name' => $name,
             'email' => $email,

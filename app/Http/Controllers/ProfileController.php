@@ -4,6 +4,7 @@ namespace School\Http\Controllers;
 
 use Illuminate\Http\Request;
 use School\Http\Requests\StoreProfileRequest;
+use School\Http\Requests\UpdateProfileRequest;
 use School\Http\Requests\UpdatePasswordRequest;
 use School\User;
 
@@ -91,7 +92,7 @@ class ProfileController extends Controller
     * @param  int  User $user
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, User $user)
+    public function update(UpdateProfileRequest $request, User $user)
     {
         $this->authorize('user.edit');
 

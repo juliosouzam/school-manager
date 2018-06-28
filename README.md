@@ -29,7 +29,7 @@ Depois, entre na pasta e execute:
 ```
 cd school-manager
 composer install
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 Em seguida, dê as permissões nas pastas:
@@ -78,3 +78,9 @@ Para isso ocorrer com sucesso, precisará que só configure as variáveis de amb
 HEROKU_API_KEY = Api Key do Heroku
 HEROKU_APP_NAME = Nome da aplicação do Heroku
 ```
+
+# Bonus
+O Docker trabalha também como serviços, mas a aplicação está configurada somente como container.
+Para visualizar o consumo de recursos qua a aplicação está pegando de sua máquina, basta você entrar em [http://localhost:9000](http://localhost:9000)
+Irá abrir a tela de administrador do Portainer que serve como um gerenciador de containers Docker.
+Com ele, você pode criar, excluír e escalonar sua aplicação muito mais fácil e rápido.
