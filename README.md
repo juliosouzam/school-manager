@@ -27,6 +27,7 @@ git clone https://github.com/juliocesar64/school-manager.git
 Depois, entre na pasta e execute:
 
 ```
+cd school-manager
 composer install
 docker-compose up -d
 ```
