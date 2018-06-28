@@ -15,6 +15,7 @@ class StudentTest extends TestCase
         $student = factory('School\Student')->create();
 
         $this->get('admin/student/'.$student->id)
+            ->assertDontSeeText($student->name)
             ->assertRedirect('/login');
     }
 
@@ -24,6 +25,7 @@ class StudentTest extends TestCase
         $student = factory('School\Student')->make();
 
         $this->post('/admin/student/store', $student->toArray())
+            ->assertDontSeeText($student->name)
             ->assertRedirect('/login');
     }
 
@@ -33,6 +35,7 @@ class StudentTest extends TestCase
         $student = factory('School\Student')->create();
 
         $this->put('/admin/student/update/'.$student->id, $student->toArray())
+            ->assertDontSeeText($student->name)
             ->assertRedirect('/login');
     }
 
@@ -42,6 +45,7 @@ class StudentTest extends TestCase
         $student = factory('School\Student')->create();
 
         $this->delete('/admin/student/destroy/'.$student->id, $student->toArray())
+            ->assertDontSeeText($student->name)
             ->assertRedirect('/login');
     }
 }

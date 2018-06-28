@@ -16,6 +16,7 @@ class CourseTest extends TestCase
         $course = factory('School\Course')->make();
 
         $this->post('admin/course/store', $course->toArray())
+            ->assertDontSeeText($course->name)
             ->assertRedirect('/login');
     }
 
@@ -25,6 +26,7 @@ class CourseTest extends TestCase
         $course = factory('School\Course')->create();
 
         $this->get('/admin/course/'.$course->id)
+            ->assertDontSeeText($course->name)
             ->assertRedirect('/login');
     }
 
@@ -34,6 +36,7 @@ class CourseTest extends TestCase
         $course = factory('School\Course')->create();
 
         $this->put('/admin/course/update/'.$course->id, $course->toArray())
+            ->assertDontSeeText($course->name)
             ->assertRedirect('/login');
     }
 
@@ -43,6 +46,7 @@ class CourseTest extends TestCase
         $course = factory('School\Course')->create();
 
         $this->delete('/admin/course/destroy/'.$course->id, $course->toArray())
+            ->assertDontSeeText($course->name)
             ->assertRedirect('/login');
     }
 }
