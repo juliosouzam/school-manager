@@ -6,7 +6,7 @@ Sistema desenvolvido para a vaga de Desenvolvedor PHP
 
 Para o desenvolvimento do sistema, foi usado o Framework Laravel em sua versão 5.6, usando o PHP 7.2.6 na máquina local, o composer para gerenciamento de dependências e o Docker, que é uma plataforma Open Source que usa Containers Linux para criar ambientes isolados, podendo subir a aplicação sem ter problemas com dependências de máquina.
 
-### Pre-requisitos
+### Pré-requisitos
 
 Para instalar e começar a usar a aplicação, é necessário que o Docker e o Docker-compose esteja instalado em sua máquina.
 A documentação do [Docker](https://docs.docker.com/install/#supported-platforms) é bem explicativa e fácil de usar. Lá tem um tutórial de sua instalação em vários tipos de sistemas operacionais (Win, Linux e Mac), escolha o seu sistema e siga o passo a passo para realizar a instalação.
@@ -14,7 +14,7 @@ A documentação do [Docker compose](https://docs.docker.com/v17.09/compose/inst
 
 Outros requisitos como o PHP em sua versão >= 7.1 e o [Composer](https://getcomposer.org/download/) também serão necessários.
 
-### Installing
+### Instalando
 
 Depois de ter instalado os pré-requisitos, vamos instalar a aplicação.
 
