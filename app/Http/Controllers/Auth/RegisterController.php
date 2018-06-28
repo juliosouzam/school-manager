@@ -40,6 +40,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        return redirect()->route('login')->with('error', 'Você não pode se registrar! Peça ao Administrador para criar sua conta.');
+    }
+
     /**
     * Get a validator for an incoming registration request.
     *
