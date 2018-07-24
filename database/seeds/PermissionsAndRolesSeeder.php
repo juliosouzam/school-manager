@@ -14,48 +14,52 @@ class PermissionsAndRolesSeeder extends Seeder
     */
     public function run()
     {
-        if (is_null(Role::first())) {
-            Role::create([
-                'name' => 'Administrador',
-                'slug' => 'administrator',
-                'type' => 1
-            ]);
-
-            Role::create([
-                'name' => 'Funcionario',
-                'slug' => 'officer',
-                'type' => 2
-            ]);
+        $roles = [
+            ['name' => 'Administrador', 'slug' => 'administrator', 'type' => 1],
+            ['name' => 'Funcionario', 'slug' => 'officer', 'type' => 2]
+        ];
+        foreach ($roles as $role) {
+            if (is_null(Role::where('slug', $role['slug'])->first())) {
+                Role::create($role);
+            }
         }
 
-        if (is_null(Group::first())) {
-            Group::create(['name' => 'Alunos', 'nick' => 'students']);
-            Group::create(['name' => 'Cursos', 'nick' => 'courses']);
-            Group::create(['name' => 'Usuários', 'nick' => 'users']);
-            Group::create(['name' => 'Permissões dos Grupos', 'nick' => 'roles']);
+        $groups = [
+            ['name' => 'Abc', 'nick' => 'abc'],
+            ['name' => 'Alunos', 'nick' => 'students'],
+            ['name' => 'Cursos', 'nick' => 'courses'],
+            ['name' => 'Usuários', 'nick' => 'users'],
+            ['name' => 'Permissões dos Grupos', 'nick' => 'roles']
+        ];
+        foreach ($groups as $group) {
+            if(is_null(Group::where('nick', $group['nick'])->first())){
+                Group::create($group);
+            }
         }
 
-        if (is_null(Permission::first())) {
-            Permission::create(['name'=> 'Acesso aos Alunos', 'slug' => 'student.index', 'group_id' => Group::where('nick', 'students')->first()->id]);
-            Permission::create(['name'=> 'Salvar Alunos', 'slug' => 'student.store', 'group_id' => Group::where('nick', 'students')->first()->id]);
-            Permission::create(['name'=> 'Editar Alunos', 'slug' => 'student.edit', 'group_id' => Group::where('nick', 'students')->first()->id]);
-            Permission::create(['name'=> 'Visualizar Alunos', 'slug' => 'student.show', 'group_id' => Group::where('nick', 'students')->first()->id]);
-            Permission::create(['name'=> 'Excluir Alunos', 'slug' => 'student.destroy', 'group_id' => Group::where('nick', 'students')->first()->id]);
-
-            Permission::create(['name'=> 'Acesso aos Cursos', 'slug' => 'course.index', 'group_id' => Group::where('nick', 'courses')->first()->id]);
-            Permission::create(['name'=> 'Salvar Cursos', 'slug' => 'course.store', 'group_id' => Group::where('nick', 'courses')->first()->id]);
-            Permission::create(['name'=> 'Editar Cursos', 'slug' => 'course.edit', 'group_id' => Group::where('nick', 'courses')->first()->id]);
-            Permission::create(['name'=> 'Visualizar Cursos', 'slug' => 'course.show', 'group_id' => Group::where('nick', 'courses')->first()->id]);
-            Permission::create(['name'=> 'Excluir Cursos', 'slug' => 'course.destroy', 'group_id' => Group::where('nick', 'courses')->first()->id]);
-
-            Permission::create(['name'=> 'Acesso aos Usuários', 'slug' => 'user.index', 'group_id' => Group::where('nick', 'users')->first()->id]);
-            Permission::create(['name'=> 'Salvar Usuários', 'slug' => 'user.store', 'group_id' => Group::where('nick', 'users')->first()->id]);
-            Permission::create(['name'=> 'Editar Usuários', 'slug' => 'user.edit', 'group_id' => Group::where('nick', 'users')->first()->id]);
-            Permission::create(['name'=> 'Visualizar Usuários', 'slug' => 'user.show', 'group_id' => Group::where('nick', 'users')->first()->id]);
-            Permission::create(['name'=> 'Excluir Usuários', 'slug' => 'user.destroy', 'group_id' => Group::where('nick', 'users')->first()->id]);
-
-            Permission::create(['name'=> 'Acesso as Permissões', 'slug' => 'role.index', 'group_id' => Group::where('nick', 'roles')->first()->id]);
-            Permission::create(['name'=> 'Salvar Permissões', 'slug' => 'role.store', 'group_id' => Group::where('nick', 'roles')->first()->id]);
+        $permissions = [
+            ['name'=> 'Acesso aos Alunos', 'slug' => 'student.index', 'group_id' => Group::where('nick', 'students')->first()->id],
+            ['name'=> 'Salvar Alunos', 'slug' => 'student.store', 'group_id' => Group::where('nick', 'students')->first()->id],
+            ['name'=> 'Editar Alunos', 'slug' => 'student.edit', 'group_id' => Group::where('nick', 'students')->first()->id],
+            ['name'=> 'Visualizar Alunos', 'slug' => 'student.show', 'group_id' => Group::where('nick', 'students')->first()->id],
+            ['name'=> 'Excluir Alunos', 'slug' => 'student.destroy', 'group_id' => Group::where('nick', 'students')->first()->id],
+            ['name'=> 'Acesso aos Cursos', 'slug' => 'course.index', 'group_id' => Group::where('nick', 'courses')->first()->id],
+            ['name'=> 'Salvar Cursos', 'slug' => 'course.store', 'group_id' => Group::where('nick', 'courses')->first()->id],
+            ['name'=> 'Editar Cursos', 'slug' => 'course.edit', 'group_id' => Group::where('nick', 'courses')->first()->id],
+            ['name'=> 'Visualizar Cursos', 'slug' => 'course.show', 'group_id' => Group::where('nick', 'courses')->first()->id],
+            ['name'=> 'Excluir Cursos', 'slug' => 'course.destroy', 'group_id' => Group::where('nick', 'courses')->first()->id],
+            ['name'=> 'Acesso aos Usuários', 'slug' => 'user.index', 'group_id' => Group::where('nick', 'users')->first()->id],
+            ['name'=> 'Salvar Usuários', 'slug' => 'user.store', 'group_id' => Group::where('nick', 'users')->first()->id],
+            ['name'=> 'Editar Usuários', 'slug' => 'user.edit', 'group_id' => Group::where('nick', 'users')->first()->id],
+            ['name'=> 'Visualizar Usuários', 'slug' => 'user.show', 'group_id' => Group::where('nick', 'users')->first()->id],
+            ['name'=> 'Excluir Usuários', 'slug' => 'user.destroy', 'group_id' => Group::where('nick', 'users')->first()->id],
+            ['name'=> 'Acesso as Permissões', 'slug' => 'role.index', 'group_id' => Group::where('nick', 'roles')->first()->id],
+            ['name'=> 'Salvar Permissões', 'slug' => 'role.store', 'group_id' => Group::where('nick', 'roles')->first()->id],
+        ];
+        foreach ($permissions as $permission) {
+            if (is_null(Permission::where('slug', $permission['slug'])->first())) {
+                Permission::create($permission);
+            }
         }
     }
 }
