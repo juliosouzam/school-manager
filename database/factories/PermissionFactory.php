@@ -1,12 +1,12 @@
 <?php
 
 use Faker\Generator as Faker;
-use School\Permission;
 
-$factory->define(Permission::class, function (Faker $faker) {
+$factory->define(School\Permission::class, function (Faker $faker) {
+    $name = $faker->word;
     return [
-        'name' => $faker->word,
-        'slug' => $faker->word,
+        'name' => $name,
+        'slug' => $name,
         'group_id' => factory('School\Group')->create()->id,
     ];
 });

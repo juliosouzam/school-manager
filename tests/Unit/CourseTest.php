@@ -6,11 +6,11 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class CourseUnitTest extends TestCase
+class CourseTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testIfCourseHaveOneStudent()
+    public function test_if_course_have_one_student()
     {
         $course = factory('School\Course')->create();
 
@@ -19,7 +19,7 @@ class CourseUnitTest extends TestCase
         $this->assertCount(1, $course->students);
     }
 
-    public function testIfCourseHaveMoreOfOneStudents()
+    public function test_if_course_have_more_of_one_students()
     {
         $course = factory('School\Course')->create();
         factory('School\Student')->create(['course_id' => $course->id]);

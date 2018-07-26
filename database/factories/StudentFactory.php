@@ -1,9 +1,8 @@
 <?php
 
 use Faker\Generator as Faker;
-use School\Student;
 
-$factory->define(Student::class, function (Faker $faker) {
+$factory->define(School\Student::class, function (Faker $faker) {
     return [
         'registry' => rand(1, 9),
         'name' => $faker->word,

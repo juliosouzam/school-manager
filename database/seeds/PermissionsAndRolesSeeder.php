@@ -25,7 +25,6 @@ class PermissionsAndRolesSeeder extends Seeder
         }
 
         $groups = [
-            ['name' => 'Abc', 'nick' => 'abc'],
             ['name' => 'Alunos', 'nick' => 'students'],
             ['name' => 'Cursos', 'nick' => 'courses'],
             ['name' => 'Usuários', 'nick' => 'users'],
@@ -41,17 +40,14 @@ class PermissionsAndRolesSeeder extends Seeder
             ['name'=> 'Acesso aos Alunos', 'slug' => 'student.index', 'group_id' => Group::where('nick', 'students')->first()->id],
             ['name'=> 'Salvar Alunos', 'slug' => 'student.store', 'group_id' => Group::where('nick', 'students')->first()->id],
             ['name'=> 'Editar Alunos', 'slug' => 'student.edit', 'group_id' => Group::where('nick', 'students')->first()->id],
-            ['name'=> 'Visualizar Alunos', 'slug' => 'student.show', 'group_id' => Group::where('nick', 'students')->first()->id],
             ['name'=> 'Excluir Alunos', 'slug' => 'student.destroy', 'group_id' => Group::where('nick', 'students')->first()->id],
             ['name'=> 'Acesso aos Cursos', 'slug' => 'course.index', 'group_id' => Group::where('nick', 'courses')->first()->id],
             ['name'=> 'Salvar Cursos', 'slug' => 'course.store', 'group_id' => Group::where('nick', 'courses')->first()->id],
             ['name'=> 'Editar Cursos', 'slug' => 'course.edit', 'group_id' => Group::where('nick', 'courses')->first()->id],
-            ['name'=> 'Visualizar Cursos', 'slug' => 'course.show', 'group_id' => Group::where('nick', 'courses')->first()->id],
             ['name'=> 'Excluir Cursos', 'slug' => 'course.destroy', 'group_id' => Group::where('nick', 'courses')->first()->id],
             ['name'=> 'Acesso aos Usuários', 'slug' => 'user.index', 'group_id' => Group::where('nick', 'users')->first()->id],
             ['name'=> 'Salvar Usuários', 'slug' => 'user.store', 'group_id' => Group::where('nick', 'users')->first()->id],
             ['name'=> 'Editar Usuários', 'slug' => 'user.edit', 'group_id' => Group::where('nick', 'users')->first()->id],
-            ['name'=> 'Visualizar Usuários', 'slug' => 'user.show', 'group_id' => Group::where('nick', 'users')->first()->id],
             ['name'=> 'Excluir Usuários', 'slug' => 'user.destroy', 'group_id' => Group::where('nick', 'users')->first()->id],
             ['name'=> 'Acesso as Permissões', 'slug' => 'role.index', 'group_id' => Group::where('nick', 'roles')->first()->id],
             ['name'=> 'Salvar Permissões', 'slug' => 'role.store', 'group_id' => Group::where('nick', 'roles')->first()->id],

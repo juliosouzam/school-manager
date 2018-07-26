@@ -1,11 +1,11 @@
 <?php
 
 use Faker\Generator as Faker;
-use School\Group;
 
-$factory->define(Group::class, function (Faker $faker) {
+$factory->define(School\Group::class, function (Faker $faker) {
+    $name = $faker->word;
     return [
-        'name' => $faker->word,
-        'nick' => $faker->word,
+        'name' => $name,
+        'nick' => $name,
     ];
 });

@@ -34,7 +34,7 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <ul class="nav nav-pills">
-                                @can ('student.index')
+                                @can ('view', \School\Student::class)
                                     <li class="nav-item {{ Request::is('admin/student*') ? 'active':'' }}">
                                         <a href="{{ route('student.index') }}" class="nav-link">
                                             <i class="fa fa-fw fa-user"></i>

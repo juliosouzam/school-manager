@@ -16,7 +16,7 @@ class StudentController extends Controller
     */
     public function index()
     {
-        $this->authorize('student.index');
+        $this->authorize('view', Student::class);
 
         $students = Student::all();
 
@@ -30,7 +30,7 @@ class StudentController extends Controller
     */
     public function create()
     {
-        $this->authorize('student.store');
+        $this->authorize('create', Student::class);
 
         return view('students.create');
     }
@@ -43,7 +43,7 @@ class StudentController extends Controller
     */
     public function store(StoreStudentRequest $request, Student $student)
     {
-        $this->authorize('student.store');
+        $this->authorize('create', $student);
 
         $request = $request->only(['name', 'registry', 'course_id', 'semester', 'status']);
         $student->fill($request);
@@ -63,7 +63,7 @@ class StudentController extends Controller
     */
     public function show(Student $student)
     {
-        $this->authorize('student.show');
+        $this->authorize('view', $student);
 
         return view('students.show', compact('student'));
     }
@@ -76,7 +76,7 @@ class StudentController extends Controller
     */
     public function edit(Student $student)
     {
-        $this->authorize('student.edit');
+        $this->authorize('edit', $student);
 
         return view('students.edit', compact('student'));
     }
@@ -90,7 +90,7 @@ class StudentController extends Controller
     */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        $this->authorize('student.edit');
+        $this->authorize('edit', $student);
 
         $request = $request->only(['name', 'registry', 'course_id', 'semester', 'status']);
 
@@ -109,7 +109,7 @@ class StudentController extends Controller
     */
     public function destroy(Student $student)
     {
-        $this->authorize('student.destroy');
+        $this->authorize('destroy', $student);
         $name = $student->name;
 
         if (!$student->delete()) {

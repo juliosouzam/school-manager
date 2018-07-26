@@ -2,9 +2,10 @@
 
 namespace School\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Contracts\Auth\Access\Gate;
+use School\User;
 use School\Permission;
+use Illuminate\Contracts\Auth\Access\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
     * @var array
     */
     protected $policies = [
-        'School\Model' => 'School\Policies\ModelPolicy',
+        'School\Student' => 'School\Policies\StudentPolicy',
     ];
 
     /**
@@ -24,20 +25,21 @@ class AuthServiceProvider extends ServiceProvider
     */
     public function boot(Gate $gate)
     {
-        // $this->registerPolicies();
-        if(request()->is('admin*') && !is_null(Permission::first())) {
+        $this->registerPolicies();
 
-            $permissions = Permission::with('roles')->get();
+        // if(request()->is('admin*') && !is_null(Permission::first())) {
 
-            foreach ($permissions as $permission) {
+        //     $permissions = Permission::with('roles')->get();
 
-                $gate->define($permission->slug, function ($user) use ($permission) {
-                    if ($user->role->isAdmin() || $permission->roles->contains($user->role)) {
-                        return true;
-                    }
-                    return false;
-                });
-            }
-        }
+        //     foreach ($permissions as $permission) {
+
+        //         $gate->define($permission->slug, function ($user) use ($permission) {
+        //             if ($user->role->isAdmin() || $permission->roles->contains($user->role)) {
+        //                 return true;
+        //             }
+        //             return false;
+        //         });
+        //     }
+        // }
     }
 }

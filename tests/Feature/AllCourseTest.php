@@ -3,10 +3,9 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class CourseTest extends TestCase
+class AllCourseTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -18,6 +17,21 @@ class CourseTest extends TestCase
         $this->post('admin/course/store', $course->toArray())
             ->assertDontSeeText($course->name)
             ->assertRedirect('/login');
+    }
+
+    public function test_if_aunthenticated_user_can_create_course()
+    {
+        $permission = factory('School\Permission')->create(['slug' => 'course.store']);
+
+        $this->signIn();
+
+        $course = factory('School\Course')->make();
+
+        $response = $this->post('/admin/course/store', $course->toArray());
+
+        dd($response->headers->get('Location'));
+
+        $this->get($response->headers->get('Location'));
     }
 
     public function testIfUnauthenticatedCantViewCourse()

@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <table class="table table-striped table-hover table-responsive-sm">
                             <div class="float-right mb-2">
-                                @can ('student.store')
+                                @can ('create', \School\Student::class)
                                     <a href="{{ route('student.create') }}" class="btn btn-sm btn-success">
                                         <i class="fa fa-fw fa-plus"></i>
                                         Adicionar

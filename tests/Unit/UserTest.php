@@ -9,11 +9,12 @@ class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testIfAuthenticatedCanViewAdmin()
+    public function test_if_authenticated_can_view_admin()
     {
-        $user = factory('School\User')->create();
-        $this->actingAs($user)
-            ->get('/admin')
-            ->assertSee($user->name);
+        $this->signIn();
+
+        $this->get('/admin')
+            ->assertSee(auth()->user()->name)
+            ->assertSee('Welcome');
     }
 }
