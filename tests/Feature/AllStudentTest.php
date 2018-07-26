@@ -3,24 +3,34 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Tests\Traits\DatabaseRefresh;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AllStudentTest extends TestCase
 {
-    use DatabaseRefresh;
+    use RefreshDatabase;
 
-    public function testIfUnauthenticatedCantViewStudent()
+    public function test_if_unauthenticated_cant_view_student()
     {
         $this->withExceptionHandling();
         $student = factory('School\Student')->create();
 
-        $this->get('admin/student/'.$student->id)
-            ->assertDontSeeText($student->name)
+        $response = $this->get('admin/student/'.$student->id);
+        $response->assertDontSeeText($student->name)
             ->assertRedirect('/login');
     }
 
-    public function testIfUnauthenticatedCantCreateStudent()
+    public function test_if_authenticated_user_can_browser_a_single_student()
+    {
+        $this->signIn();
+
+        $student = factory('School\Student')->create();
+
+        $response = $this->get('/admin/student/'.$student->id);
+
+        $response->assertSee($student->name);
+    }
+
+    public function test_if_unauthenticated_cant_create_student()
     {
         $this->withExceptionHandling();
         $student = factory('School\Student')->make();
@@ -30,23 +40,60 @@ class AllStudentTest extends TestCase
             ->assertRedirect('/login');
     }
 
-    public function testIfUnauthenticatedCantUpdateStudent()
+    public function test_if_authenticated_user_can_create_a_student()
+    {
+        $this->signIn();
+
+        $student = factory('School\Student')->make();
+
+        $response = $this->post('/admin/student/store', $student->toArray());
+
+        $resp = $this->get($response->headers->get('Location'));
+        $resp->assertSee($student->name);
+    }
+
+    public function test_if_unauthenticated_cant_update_student()
     {
         $this->withExceptionHandling();
         $student = factory('School\Student')->create();
 
-        $this->put('/admin/student/update/'.$student->id, $student->toArray())
+        $response = $this->put('/admin/student/update/'.$student->id, $student->toArray());
+        $response->assertDontSeeText($student->name)
+            ->assertRedirect('/login');
+    }
+
+    public function test_if_authenticated_user_can_update_student()
+    {
+        $this->signIn();
+
+        $student = factory('School\Student')->create();
+        $studentUpd = factory('School\Student')->create();
+
+        $this->put('/admin/student/update/'.$student->id, $studentUpd->toArray());
+
+        $response = $this->get('/admin/student/'.$student->id);
+        $response->assertSee($studentUpd->name)
+            ->assertDontSee($student->name);
+    }
+
+    public function test_if_unauthenticated_cant_delete_student()
+    {
+        $this->withExceptionHandling();
+        $student = factory('School\Student')->create();
+
+        $this->delete('/admin/student/destroy/'.$student->id)
             ->assertDontSeeText($student->name)
             ->assertRedirect('/login');
     }
 
-    public function testIfUnauthenticatedCantDeleteStudent()
+    public function test_if_authenticated_user_can_delete_student()
     {
-        $this->withExceptionHandling();
+        $this->signIn();
+
         $student = factory('School\Student')->create();
 
-        $this->delete('/admin/student/destroy/'.$student->id, $student->toArray())
-            ->assertDontSeeText($student->name)
-            ->assertRedirect('/login');
+        $this->delete('/admin/student/destroy/'. $student->id);
+
+        $this->assertDatabaseMissing('students', ['id'=>$student->id]);
     }
 }

@@ -24,11 +24,11 @@ class Role extends Model
 
     public function isAdmin()
     {
-        return $this->type === 1;
+        return $this->type == 1;
     }
 
     public function officer()
     {
-        return $this->type === 2;
+        return $this->type == 2;
     }
 }
