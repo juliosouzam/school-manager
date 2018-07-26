@@ -85,7 +85,7 @@
                             <div class="form-actions">
                                 <div class="col-12">
                                     <div class="float-right">
-                                        @can ('student.store')
+                                        @can ('create', \School\Student::class)
                                             <button type="submit" class="btn btn-success" name="button">
                                                 <i class="fa fa-pencil"></i>
                                                 Salvar

@@ -16,7 +16,7 @@ class CourseController extends Controller
     */
     public function index()
     {
-        $this->authorize('course.index');
+        $this->authorize('view', Course::class);
         $courses = Course::latest()->paginate(15);
 
         return view('courses.index', compact('courses'));
@@ -29,7 +29,7 @@ class CourseController extends Controller
     */
     public function create()
     {
-        $this->authorize('course.store');
+        $this->authorize('create', Course::class);
 
         return view('courses.create');
     }
@@ -42,7 +42,7 @@ class CourseController extends Controller
     */
     public function store(StoreCourseRequest $request)
     {
-        $this->authorize('course.store');
+        $this->authorize('create', Course::class);
 
         $request = $request->only(['cod_course', 'name', 'institution']);
 
@@ -64,7 +64,7 @@ class CourseController extends Controller
     */
     public function show(Course $course)
     {
-        $this->authorize('course.show');
+        $this->authorize('view', $course);
 
         return view('courses.show', compact('course'));
     }
@@ -77,7 +77,7 @@ class CourseController extends Controller
     */
     public function edit(Course $course)
     {
-        $this->authorize('course.edit');
+        $this->authorize('update', $course);
 
         return view('courses.edit', compact('course'));
     }
@@ -91,7 +91,7 @@ class CourseController extends Controller
     */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        $this->authorize('course.edit');
+        $this->authorize('update', $course);
 
         $request = $request->only(['cod_course', 'name', 'institution']);
 
@@ -108,7 +108,7 @@ class CourseController extends Controller
     */
     public function destroy(Course $course)
     {
-        $this->authorize('course.destroy');
+        $this->authorize('delete', $course);
 
         if ($course->delete()) {
             return redirect()->back()->with('status', 'Curso deletado com sucesso!');

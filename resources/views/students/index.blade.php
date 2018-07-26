@@ -40,13 +40,13 @@
                                         <td>{{ $student->getStatusName() }}</td>
                                         <td>{{ $student->updated_at->format('d/m/Y H:i') }}</td>
                                         <td>
-                                            @can ('student.show')
+                                            @can ('view', $student)
                                                 <a href="{{ route('student.show', $student->id) }}" class="btn btn-sm btn-info">
                                                     <i class="fa fa-fw fa-eye"></i>
                                                 </a>
                                             @endcan
                                             <!-- Button trigger modal -->
-                                            @can ('student.destroy')
+                                            @can ('delete', $student)
                                                 <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDeleteStudent-{{ $student->id }}">
                                                     <i class="fa fa-fw fa-trash"></i>
                                                 </button>

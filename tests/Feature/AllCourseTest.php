@@ -3,11 +3,12 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Tests\Traits\DatabaseRefresh;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AllCourseTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseRefresh;
 
     public function testIfUnauthenticatedCantCreateCourse()
     {

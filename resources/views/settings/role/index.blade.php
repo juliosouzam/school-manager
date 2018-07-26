@@ -18,7 +18,7 @@
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    @can ('role.store')
+                                    @can ('create', \School\Role::class)
                                         <th>Ações</th>
                                     @endcan
                                 </tr>
@@ -27,7 +27,7 @@
                                 @foreach ($roles as $role)
                                     <tr>
                                         <td>{{ $role->name }}</td>
-                                        @can ('role.store')
+                                        @can ('create', $role)
                                             <td>
                                                 <a href="{{ route('roles.permission', $role->id) }}" class="btn btn-sm btn-info">
                                                     <i class="fa fa-fw fa-lock"></i>

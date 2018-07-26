@@ -56,7 +56,7 @@
                             <div class="form-actions">
                                 <div class="col-12">
                                     <div class="float-right">
-                                        @can ('course.edit')
+                                        @can ('update', $course)
                                             <button type="submit" class="btn btn-success" name="button">
                                                 <i class="fa fa-pencil"></i>
                                                 Atualizar

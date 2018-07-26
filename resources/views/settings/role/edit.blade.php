@@ -61,7 +61,8 @@
                                     <div class="col-12 mt-5">
                                         <a href="{{ route('roles.index') }}" class="btn btn-secondary">Cancelar</a>
                                         <button type="submit" class="btn btn-success">
-                                            <i class="fa fa-save"></i> Salvar
+                                            <i class="fa fa-save"></i>
+                                            Salvar
                                         </button>
                                     </div>
                                 </div>

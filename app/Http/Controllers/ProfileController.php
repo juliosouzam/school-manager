@@ -17,7 +17,7 @@ class ProfileController extends Controller
     */
     public function index()
     {
-        $this->authorize('user.index');
+        $this->authorize('view', User::class);
         $users = User::all();
 
         return view('settings.profile.index', compact('users'));
@@ -30,7 +30,7 @@ class ProfileController extends Controller
     */
     public function create()
     {
-        $this->authorize('user.store');
+        $this->authorize('create', User::class);
 
         return view('settings.profile.create');
     }
@@ -43,7 +43,7 @@ class ProfileController extends Controller
     */
     public function store(StoreProfileRequest $request)
     {
-        $this->authorize('user.store');
+        $this->authorize('create', User::class);
 
         $request = $request->only(['name', 'email', 'password', 'role_id']);
         $request['password'] = \Hash::make($request['password']);
@@ -63,7 +63,7 @@ class ProfileController extends Controller
     */
     public function show(User $user)
     {
-        $this->authorize('user.show');
+        $this->authorize('view', $user);
 
         if (auth()->user()->id != $user->id && !auth()->user()->role->isAdmin()) {
             return redirect()->back()->with('error', 'Você não tem permissão de acessar outros usuários!');
@@ -80,7 +80,7 @@ class ProfileController extends Controller
     */
     public function edit(User $user)
     {
-        $this->authorize('user.edit');
+        $this->authorize('update', $user);
 
         return view('settings.profile.edit', compact('user'));
     }
@@ -94,7 +94,7 @@ class ProfileController extends Controller
     */
     public function update(UpdateProfileRequest $request, User $user)
     {
-        $this->authorize('user.edit');
+        $this->authorize('update', $user);
 
         $request = $request->only(['name', 'email', 'role_id']);
 
@@ -114,7 +114,7 @@ class ProfileController extends Controller
     */
     public function updatePassword(UpdatePasswordRequest $request, User $user)
     {
-        $this->authorize('user.edit');
+        $this->authorize('update', $user);
 
         $request = $request->only(['password']);
         $password = \Hash::make($request['password']);
@@ -134,7 +134,7 @@ class ProfileController extends Controller
     */
     public function destroy(User $user)
     {
-        $this->authorize('user.destroy');
+        $this->authorize('delete', $user);
 
         if ((auth()->user()->id === $user->id && auth()->user()->role->isAdmin()) || auth()->user()->id === $user->id) {
             return redirect()->back()->with('error', 'Você não pôde deletar seu próprio usuário!');

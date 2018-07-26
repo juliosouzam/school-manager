@@ -42,7 +42,7 @@
                                         </a>
                                     </li>
                                 @endcan
-                                @can ('course.index')
+                                @can ('view', \School\Course::class)
                                     <li class="nav-item {{ Request::is('admin/course*') ? 'active':'' }}">
                                         <a href="{{ route('course.index') }}" class="nav-link">
                                             <i class="fa fa-fw fa-book"></i>
@@ -68,13 +68,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @can ('user.show')
+                                    @can ('view', \School\User::class)
                                         <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id) }}">
                                             <i class="fa fa-fw fa-user"></i>
                                             Perfil
                                         </a>
                                     @endcan
-                                    @can ('role.index')
+                                    @can ('view', \School\Role::class)
                                         <a class="dropdown-item" href="{{ route('roles.index') }}">
                                             <i class="fa fa-fw fa-users"></i>
                                             Grupos

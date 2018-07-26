@@ -6,14 +6,9 @@ use School\User;
 use School\Student;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class StudentPolicy
+class StudentPolicy extends Policy
 {
     use HandlesAuthorization;
-
-    public function before(User $user)
-    {
-        return $user->role->isAdmin();
-    }
 
     /**
      * Determine whether the user can view the student.
@@ -22,9 +17,9 @@ class StudentPolicy
      * @param  \School\Student  $student
      * @return mixed
      */
-    public function view(User $user, Student $student)
-    {dd($user->role->permissions->contains('student.index'));
-        return $user->role->permissions->contains('student.index');
+    public function view(User $user)
+    {
+        return $this->permissions->contains('student.index');
     }
 
     /**
@@ -35,7 +30,7 @@ class StudentPolicy
      */
     public function create(User $user)
     {
-        return $user->role->permissions->contains('student.store');
+        return $this->permissions->contains('student.store');
     }
 
     /**
@@ -45,9 +40,9 @@ class StudentPolicy
      * @param  \School\Student  $student
      * @return mixed
      */
-    public function update(User $user, Student $student)
+    public function update(User $user)
     {
-        return $user->role->permissions->contains('student.edit');
+        return $this->permissions->contains('student.edit');
     }
 
     /**
@@ -57,8 +52,8 @@ class StudentPolicy
      * @param  \School\Student  $student
      * @return mixed
      */
-    public function delete(User $user, Student $student)
+    public function delete(User $user)
     {
-        return $user->role->permissions->contains('student.destroy');
+        return $this->permissions->contains('student.destroy');
     }
 }

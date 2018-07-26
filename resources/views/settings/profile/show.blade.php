@@ -12,7 +12,7 @@
                         </div>
                         @if (auth()->user()->role->isAdmin())
                           <div class="col-4">
-                              @can ('user.index')
+                              @can ('view', $user)
                                   <a href="{{ route('profile.index') }}" class="btn btn-info btn-sm">
                                       <i class="fa fa-fw fa-list"></i>
                                       Listar usuários
@@ -68,16 +68,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-actions">
-                            <div class="col-12">
-                                <div class="float-right">
-                                    <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-warning">
-                                        <i class="fa fa-fw fa-edit"></i>
-                                        Editar
-                                    </a>
+                        @can('update', $user)
+                            <div class="form-actions">
+                                <div class="col-12">
+                                    <div class="float-right">
+                                        <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-warning">
+                                            <i class="fa fa-fw fa-edit"></i>
+                                            Editar
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endcan
                     </form>
                 </div>
             </div>

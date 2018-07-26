@@ -76,7 +76,7 @@ class StudentController extends Controller
     */
     public function edit(Student $student)
     {
-        $this->authorize('edit', $student);
+        $this->authorize('update', $student);
 
         return view('students.edit', compact('student'));
     }
@@ -90,7 +90,7 @@ class StudentController extends Controller
     */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        $this->authorize('edit', $student);
+        $this->authorize('update', $student);
 
         $request = $request->only(['name', 'registry', 'course_id', 'semester', 'status']);
 
@@ -109,7 +109,7 @@ class StudentController extends Controller
     */
     public function destroy(Student $student)
     {
-        $this->authorize('destroy', $student);
+        $this->authorize('delete', $student);
         $name = $student->name;
 
         if (!$student->delete()) {

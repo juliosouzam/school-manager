@@ -37,7 +37,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @can ('student.store')
+                                    @can ('create', \School\Student::class)
                                         <div class="col-3">
                                             <div class="form-group">
                                                 <div class="col-12 text-right">
@@ -66,7 +66,7 @@
                             <div class="form-actions">
                                 <div class="col-12">
                                     <div class="float-right">
-                                        @can ('course.edit')
+                                        @can ('update', $course)
                                             <a href="{{ route('course.edit', $course->id) }}" class="btn btn-warning">
                                                 <i class="fa fa-pencil"></i>
                                                 Editar

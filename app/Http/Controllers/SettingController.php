@@ -15,7 +15,7 @@ class SettingController extends Controller
     */
     public function index()
     {
-        $this->authorize('role.index');
+        $this->authorize('view', \School\Role::class);
         $roles = Role::all();
 
         return view('settings.role.index', compact('roles'));
@@ -39,7 +39,7 @@ class SettingController extends Controller
     */
     public function store(Request $request, Role $role)
     {
-        $this->authorize('role.store');
+        $this->authorize('create', $role);
 
         $role->permissions()->sync($request->input('slug') ?? []);
 
@@ -48,9 +48,9 @@ class SettingController extends Controller
 
     public function permissions(Role $role)
     {
-        $this->authorize('role.index');
+        $this->authorize('view', $role);
 
-        if (auth()->user()->role_id != 1) {
+        if (!auth()->user()->role->isAdmin()) {
             return redirect()->back()->with('warning', 'Você não é Administrador!');
         }
 

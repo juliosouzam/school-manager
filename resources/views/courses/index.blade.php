@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <table class="table table-striped table-hover table-responsive-sm">
                             <div class="float-right mb-2">
-                                @can ('course.store')
+                                @can ('create', \School\Course::class)
                                     <a href="{{ route('course.create') }}" class="btn btn-sm btn-success">
                                         <i class="fa fa-fw fa-plus"></i>
                                         Adicionar
@@ -37,13 +37,13 @@
                                         <td>{{ $course->institution }}</td>
                                         <td>{{ $course->updated_at->format('d/m/Y H:i') }}</td>
                                         <td>
-                                            @can ('course.show')
+                                            @can ('view', $course)
                                                 <a href="{{ route('course.show', $course->id) }}" class="btn btn-sm btn-info">
                                                     <i class="fa fa-fw fa-eye"></i>
                                                 </a>
                                             @endcan
                                             <!-- Button trigger modal -->
-                                            @can ('course.destroy')
+                                            @can ('delete', $course)
                                                 <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDeleteCourse-{{ $course->id }}">
                                                     <i class="fa fa-fw fa-trash"></i>
                                                 </button>

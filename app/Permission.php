@@ -22,4 +22,9 @@ class Permission extends Model
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function getPermissionClouse($clouse)
+    {
+        return $this->slug === $clouse;
+    }
 }

@@ -77,7 +77,7 @@
                             <div class="form-actions">
                                 <div class="col-12">
                                     <div class="float-right">
-                                        @can ('student.edit')
+                                        @can ('update', $student)
                                             <a href="{{ route('student.edit', $student->id) }}" class="btn btn-warning">
                                                 <i class="fa fa-pencil"></i>
                                                 Editar
