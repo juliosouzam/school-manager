@@ -17,4 +17,13 @@ class UserTest extends TestCase
         $this->assertInstanceOf('School\Role', $user->role);
     }
 
+    public function test_if_authenticated_user_with_role_functionary_can_browser_admin()
+    {
+        $this->signIn(factory('School\User')->create(['role_id' => 2]));
+
+        $response = $this->get('/admin');
+        $response->assertSee(auth()->user()->name)
+            ->assertSee('Welcome');
+    }
+
 }

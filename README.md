@@ -47,13 +47,13 @@ docker-compose exec app php artisan school:install
 
 ## Executando testes
 
-Para essa aplicação, foi feito alguns testes simples, usando PHPUnit.
-Obs: O sistema não está coberto por testes, somente algumas funcionalidades simples.
+Para essa aplicação, foi feito alguns testes, usando PHPUnit.
 
-Tem dois meios de executar os testes.
+Existe dois meios de executar os testes.
 
 ### 1ª PHPUnit local.
-Você terá que ter o [PHPUnit](https://phpunit.de/getting-started/phpunit-7.html) instalado em sua máquina.
+Você terá que ter o [PHPUnit](https://phpunit.de/getting-started/phpunit-7.html)
+instalado em sua máquina.
 ```
 phpunit
 ```
