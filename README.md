@@ -20,28 +20,22 @@ Depois de ter instalado os pré-requisitos, vamos instalar a aplicação.
 
 Primerio, clone o projeto.
 
-```
+```bash
 git clone https://github.com/juliocesar64/school-manager.git
 ```
 
-Depois, entre na pasta e execute:
+Depois, execute os seguintes comandos:
 
-```
+```bash
 cd school-manager
 composer install
 docker-compose up -d --build
 ```
 
-Em seguida, dê as permissões nas pastas:
-
-```
-docker-compose exec app chmod -R 777 storage/ bootstrap/cache
-```
-
 Pronto, a aplicação está rodando em sua máquina.
-Para adicionar o primeiro usuário, execute o comando
+Para adicionar o primeiro usuário (Administrador), execute o comando:
 
-```
+```bash
 docker-compose exec app php artisan school:install
 ```
 
@@ -54,18 +48,22 @@ Existe dois meios de executar os testes.
 ### 1ª PHPUnit local.
 Você terá que ter o [PHPUnit](https://phpunit.de/getting-started/phpunit-7.html)
 instalado em sua máquina.
-```
+
+```bash
 phpunit
 ```
+
 ou se preferir, execute sem instalar
 
-```
+```bash
 vendor/bin/phpunit
 ```
+
 ### 2ª Usando Docker
 Você irá executar os testes dentro de ambiente da aplicação.
 Para isso, execute:
-```
+
+```bash
 docker-compose exec app vendor/bin/phpunit
 ```
 
@@ -74,12 +72,14 @@ docker-compose exec app vendor/bin/phpunit
 A pipeline do [Bitbucket](https://bitbucket.org/) já está adicionada e configurada.
 Todo commit que cair na branch master, será executado os testes e se ocorrer tudo sem erros, ele "automágicamente", subirá para o [Heroku](https://www.heroku.com/).
 Para isso ocorrer com sucesso, precisará que só configure as variáveis de ambiente no seu próprio bitbucket.
-```
+
+```bash
 HEROKU_API_KEY = Api Key do Heroku
 HEROKU_APP_NAME = Nome da aplicação do Heroku
 ```
 
-# Bonus
+## Bonus
+
 O Docker trabalha também como serviços, mas a aplicação está configurada somente como container.
 Para visualizar o consumo de recursos qua a aplicação está pegando de sua máquina, basta você entrar em [http://localhost:9000](http://localhost:9000)
 Irá abrir a tela de administrador do Portainer que serve como um gerenciador de containers Docker.
