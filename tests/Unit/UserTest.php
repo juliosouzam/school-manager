@@ -3,18 +3,18 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_if_authenticated_can_view_admin()
+    public function test_if_user_belongs_to_a_role()
     {
-        $this->signIn();
+        $user = factory('School\User')->create();
 
-        $this->get('/admin')
-            ->assertSee(auth()->user()->name)
-            ->assertSee('Welcome');
+        $this->assertInstanceOf('School\Role', $user->role);
     }
+
 }

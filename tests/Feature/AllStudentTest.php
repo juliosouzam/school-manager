@@ -67,7 +67,7 @@ class AllStudentTest extends TestCase
         $this->signIn();
 
         $student = factory('School\Student')->create();
-        $studentUpd = factory('School\Student')->create();
+        $studentUpd = factory('School\Student')->make();
 
         $this->put('/admin/student/update/'.$student->id, $studentUpd->toArray());
 
