@@ -46,6 +46,7 @@ Para essa aplicação, foi feito alguns testes, usando PHPUnit.
 Existe dois meios de executar os testes.
 
 ### 1ª PHPUnit local.
+
 Você terá que ter o [PHPUnit](https://phpunit.de/getting-started/phpunit-7.html)
 instalado em sua máquina.
 
@@ -60,6 +61,7 @@ vendor/bin/phpunit
 ```
 
 ### 2ª Usando Docker
+
 Você irá executar os testes dentro de ambiente da aplicação.
 Para isso, execute:
 
