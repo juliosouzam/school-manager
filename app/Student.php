@@ -29,16 +29,16 @@ class Student extends Model
     {
         switch ($this->status) {
             case 0:
-            return 'Matriculado';
+                return 'Matriculado';
                 break;
             case 1:
-            return 'Trancado';
+                return 'Trancado';
                 break;
             case 2:
-            return 'Jubilado';
+                return 'Jubilado';
                 break;
             default:
-            return 'Nenhum dado encontrado!';
+                return 'Nenhum dado encontrado!';
                 break;
         }
     }
