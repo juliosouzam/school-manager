@@ -2,14 +2,14 @@
 
 Auth::routes();
 
-Route::get('/', function(){
+Route::get('/', function () {
     return redirect()->route('home');
 });
 
 Route::get('/admin', 'HomeController@index')->name('home');
 
-Route::prefix('admin')->middleware('auth')->group(function(){
-    Route::prefix('course')->group(function(){
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::prefix('course')->group(function () {
         Route::get('/', 'CourseController@index')->name('course.index');
         Route::get('/create', 'CourseController@create')->name('course.create');
         Route::post('/store', 'CourseController@store')->name('course.store');
@@ -19,7 +19,7 @@ Route::prefix('admin')->middleware('auth')->group(function(){
         Route::delete('/destroy/{course}', 'CourseController@destroy')->name('course.destroy');
     });
 
-    Route::prefix('student')->group(function(){
+    Route::prefix('student')->group(function () {
         Route::get('/', 'StudentController@index')->name('student.index');
         Route::get('/create', 'StudentController@create')->name('student.create');
         Route::post('/store', 'StudentController@store')->name('student.store');
@@ -29,8 +29,8 @@ Route::prefix('admin')->middleware('auth')->group(function(){
         Route::delete('/destroy/{student}', 'StudentController@destroy')->name('student.destroy');
     });
 
-    Route::prefix('settings')->group(function(){
-        Route::prefix('profile')->group(function(){
+    Route::prefix('settings')->group(function () {
+        Route::prefix('profile')->group(function () {
             Route::get('/', 'ProfileController@index')->name('profile.index');
             Route::get('/edit/{user}', 'ProfileController@edit')->name('profile.edit');
             Route::get('/create', 'ProfileController@create')->name('profile.create');
@@ -41,7 +41,7 @@ Route::prefix('admin')->middleware('auth')->group(function(){
             Route::delete('/destroy/{user}', 'ProfileController@destroy')->name('profile.destroy');
         });
 
-        Route::prefix('roles')->group(function(){
+        Route::prefix('roles')->group(function () {
             Route::get('/', 'SettingController@index')->name('roles.index');
             Route::get('/{role}/permission', 'SettingController@permissions')->name('roles.permission');
             Route::post('/{role}/permissions/store', 'SettingController@store')->name('roles.permission.store');

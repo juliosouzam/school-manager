@@ -7,39 +7,39 @@ use Illuminate\Console\Command;
 class SchoolInstallCommand extends Command
 {
     /**
-    * The name and signature of the console command.
-    *
-    * @var string
-    */
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
     protected $signature = 'school:install';
 
     /**
-    * The console command description.
-    *
-    * @var string
-    */
+     * The console command description.
+     *
+     * @var string
+     */
     protected $description = 'Instala a aplicação School com seus dados de acesso!';
 
     /**
-    * Create a new command instance.
-    *
-    * @return void
-    */
+     * Create a new command instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
     }
 
     /**
-    * Execute the console command.
-    *
-    * @return mixed
-    */
+     * Execute the console command.
+     *
+     * @return mixed
+     */
     public function handle()
     {
         $this->comment('Atenção! Ao prosseguir você irá remover todos os dados de instalações anteriores.');
 
-        if (! $this->confirm('Deseja prosseguir?')) {
+        if (!$this->confirm('Deseja prosseguir?')) {
             $this->error('Operação cancelada pelo usuário!');
             exit(1);
         }
@@ -65,17 +65,17 @@ class SchoolInstallCommand extends Command
         $this->callSilent('key:generate');
         $this->callSilent('migrate:fresh');
         $this->callSilent('migrate', [
-            '--seed' => true
+            '--seed' => true,
         ]);
         \School\User::create([
-            'name' => $name,
-            'email' => $email,
+            'name'     => $name,
+            'email'    => $email,
             'password' => \Hash::make($password),
-            'role_id' => 1,
+            'role_id'  => 1,
         ]);
 
-        $this->line(sprintf("%s, agora você já pode acessar o sistema com os dados informados.", $name));
+        $this->line(sprintf('%s, agora você já pode acessar o sistema com os dados informados.', $name));
         $this->line('Acesse http://localhost/login e informe os dados utilizados nessa etapa.');
-        $this->info("Obrigado por usar o School!");
+        $this->info('Obrigado por usar o School!');
     }
 }

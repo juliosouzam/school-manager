@@ -2,8 +2,8 @@
 
 namespace School\Policies;
 
-use School\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use School\User;
 
 abstract class Policy
 {
@@ -15,7 +15,7 @@ abstract class Policy
     {
         if ($user->role->isAdmin()) {
             return true;
-        };
+        }
 
         $this->permissions = $user->permissions()->pluck('slug');
     }

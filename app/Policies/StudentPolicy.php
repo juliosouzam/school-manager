@@ -2,9 +2,9 @@
 
 namespace School\Policies;
 
-use School\User;
-use School\Student;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use School\Student;
+use School\User;
 
 class StudentPolicy extends Policy
 {
@@ -13,8 +13,9 @@ class StudentPolicy extends Policy
     /**
      * Determine whether the user can view the student.
      *
-     * @param  \School\User  $user
-     * @param  \School\Student  $student
+     * @param \School\User    $user
+     * @param \School\Student $student
+     *
      * @return mixed
      */
     public function view(User $user)
@@ -25,7 +26,8 @@ class StudentPolicy extends Policy
     /**
      * Determine whether the user can create students.
      *
-     * @param  \School\User  $user
+     * @param \School\User $user
+     *
      * @return mixed
      */
     public function create(User $user)
@@ -36,8 +38,9 @@ class StudentPolicy extends Policy
     /**
      * Determine whether the user can update the student.
      *
-     * @param  \School\User  $user
-     * @param  \School\Student  $student
+     * @param \School\User    $user
+     * @param \School\Student $student
+     *
      * @return mixed
      */
     public function update(User $user)
@@ -48,8 +51,9 @@ class StudentPolicy extends Policy
     /**
      * Determine whether the user can delete the student.
      *
-     * @param  \School\User  $user
-     * @param  \School\Student  $student
+     * @param \School\User    $user
+     * @param \School\Student $student
+     *
      * @return mixed
      */
     public function delete(User $user)

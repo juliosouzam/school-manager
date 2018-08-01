@@ -10,26 +10,26 @@ use School\Role;
 class AppServiceProvider extends ServiceProvider
 {
     /**
-    * Bootstrap any application services.
-    *
-    * @return void
-    */
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
     public function boot()
     {
-        View::composer(['students.create', 'students.edit'], function($view){
+        View::composer(['students.create', 'students.edit'], function ($view) {
             $view->with('courses', Course::all());
         });
 
-        View::composer(['settings.profile.edit', 'settings.profile.create'], function($view){
+        View::composer(['settings.profile.edit', 'settings.profile.create'], function ($view) {
             $view->with('groups', Role::all());
         });
     }
 
     /**
-    * Register any application services.
-    *
-    * @return void
-    */
+     * Register any application services.
+     *
+     * @return void
+     */
     public function register()
     {
         //
