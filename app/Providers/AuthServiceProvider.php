@@ -2,30 +2,29 @@
 
 namespace School\Providers;
 
-use School\User;
-use School\Permission;
 use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use School\Permission;
 
 class AuthServiceProvider extends ServiceProvider
 {
     /**
-    * The policy mappings for the application.
-    *
-    * @var array
-    */
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
     protected $policies = [
         'School\Student' => 'School\Policies\StudentPolicy',
-        'School\Course' => 'School\Policies\CoursePolicy',
-        'School\User' => 'School\Policies\UserPolicy',
-        'School\Role' => 'School\Policies\RolePolicy',
+        'School\Course'  => 'School\Policies\CoursePolicy',
+        'School\User'    => 'School\Policies\UserPolicy',
+        'School\Role'    => 'School\Policies\RolePolicy',
     ];
 
     /**
-    * Register any authentication / authorization services.
-    *
-    * @return void
-    */
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
     public function boot(Gate $gate)
     {
         $this->registerPolicies();

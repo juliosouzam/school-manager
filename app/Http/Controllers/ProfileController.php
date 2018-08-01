@@ -2,19 +2,18 @@
 
 namespace School\Http\Controllers;
 
-use Illuminate\Http\Request;
 use School\Http\Requests\StoreProfileRequest;
-use School\Http\Requests\UpdateProfileRequest;
 use School\Http\Requests\UpdatePasswordRequest;
+use School\Http\Requests\UpdateProfileRequest;
 use School\User;
 
 class ProfileController extends Controller
 {
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $this->authorize('view', User::class);
@@ -24,10 +23,10 @@ class ProfileController extends Controller
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $this->authorize('create', User::class);
@@ -36,11 +35,12 @@ class ProfileController extends Controller
     }
 
     /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function store(StoreProfileRequest $request)
     {
         $this->authorize('create', User::class);
@@ -56,11 +56,12 @@ class ProfileController extends Controller
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  int  User $user
-    * @return \Illuminate\Http\Response
-    */
+     * Display the specified resource.
+     *
+     * @param int  User $user
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function show(User $user)
     {
         $this->authorize('view', $user);
@@ -73,11 +74,12 @@ class ProfileController extends Controller
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  User $user
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for editing the specified resource.
+     *
+     * @param int  User $user
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function edit(User $user)
     {
         $this->authorize('update', $user);
@@ -86,12 +88,13 @@ class ProfileController extends Controller
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  User $user
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int  User                $user
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function update(UpdateProfileRequest $request, User $user)
     {
         $this->authorize('update', $user);
@@ -106,12 +109,13 @@ class ProfileController extends Controller
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  User $user
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int  User                $user
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function updatePassword(UpdatePasswordRequest $request, User $user)
     {
         $this->authorize('update', $user);
@@ -127,11 +131,12 @@ class ProfileController extends Controller
     }
 
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  int  User $user
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param int  User $user
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(User $user)
     {
         $this->authorize('delete', $user);
@@ -145,6 +150,7 @@ class ProfileController extends Controller
         if (!$user->delete()) {
             return redirect()->back()->with('error', 'Erro ao deletar esse usuário!');
         }
+
         return redirect()->back()->with('status', "Usuário {$name}, deletado com sucesso!");
     }
 }

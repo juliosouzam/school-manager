@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class AllStudentTest extends TestCase
 {
@@ -92,7 +92,7 @@ class AllStudentTest extends TestCase
 
         $student = factory('School\Student')->create();
 
-        $this->delete('/admin/student/destroy/'. $student->id);
+        $this->delete('/admin/student/destroy/'.$student->id);
 
         $this->assertDatabaseMissing('students', ['id'=>$student->id]);
     }

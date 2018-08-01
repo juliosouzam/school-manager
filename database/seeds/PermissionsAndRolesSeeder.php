@@ -1,22 +1,22 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use School\Role;
 use School\Group;
 use School\Permission;
+use School\Role;
 
 class PermissionsAndRolesSeeder extends Seeder
 {
     /**
-    * Run the database seeds.
-    *
-    * @return void
-    */
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
     {
         $roles = [
             ['name' => 'Administrador', 'slug' => 'administrator', 'type' => 1],
-            ['name' => 'Funcionario', 'slug' => 'officer', 'type' => 2]
+            ['name' => 'Funcionario', 'slug' => 'officer', 'type' => 2],
         ];
         foreach ($roles as $role) {
             if (is_null(Role::where('slug', $role['slug'])->first())) {
@@ -28,10 +28,10 @@ class PermissionsAndRolesSeeder extends Seeder
             ['name' => 'Alunos', 'nick' => 'students'],
             ['name' => 'Cursos', 'nick' => 'courses'],
             ['name' => 'Usuários', 'nick' => 'users'],
-            ['name' => 'Permissões dos Grupos', 'nick' => 'roles']
+            ['name' => 'Permissões dos Grupos', 'nick' => 'roles'],
         ];
         foreach ($groups as $group) {
-            if(is_null(Group::where('nick', $group['nick'])->first())){
+            if (is_null(Group::where('nick', $group['nick'])->first())) {
                 Group::create($group);
             }
         }
