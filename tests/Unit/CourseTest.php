@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CourseTest extends TestCase
@@ -29,6 +28,4 @@ class CourseTest extends TestCase
 
         $this->assertCount(2, $course->students);
     }
-
-
 }
