@@ -2,18 +2,17 @@
 
 namespace School\Http\Controllers;
 
-use School\Student;
-use Illuminate\Http\Request;
 use School\Http\Requests\StoreStudentRequest;
 use School\Http\Requests\UpdateStudentRequest;
+use School\Student;
 
 class StudentController extends Controller
 {
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $this->authorize('view', Student::class);
@@ -24,10 +23,10 @@ class StudentController extends Controller
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $this->authorize('create', Student::class);
@@ -36,11 +35,12 @@ class StudentController extends Controller
     }
 
     /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function store(StoreStudentRequest $request, Student $student)
     {
         $this->authorize('create', $student);
@@ -56,11 +56,12 @@ class StudentController extends Controller
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  \School\Student  $student
-    * @return \Illuminate\Http\Response
-    */
+     * Display the specified resource.
+     *
+     * @param \School\Student $student
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function show(Student $student)
     {
         $this->authorize('view', $student);
@@ -69,11 +70,12 @@ class StudentController extends Controller
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \School\Student  $student
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for editing the specified resource.
+     *
+     * @param \School\Student $student
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Student $student)
     {
         $this->authorize('update', $student);
@@ -82,12 +84,13 @@ class StudentController extends Controller
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \School\Student  $student
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \School\Student          $student
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function update(UpdateStudentRequest $request, Student $student)
     {
         $this->authorize('update', $student);
@@ -102,11 +105,12 @@ class StudentController extends Controller
     }
 
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  \School\Student  $student
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param \School\Student $student
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Student $student)
     {
         $this->authorize('delete', $student);

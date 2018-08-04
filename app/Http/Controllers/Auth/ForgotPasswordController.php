@@ -2,8 +2,8 @@
 
 namespace School\Http\Controllers\Auth;
 
-use School\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use School\Http\Controllers\Controller;
 
 class ForgotPasswordController extends Controller
 {

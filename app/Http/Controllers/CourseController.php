@@ -3,17 +3,16 @@
 namespace School\Http\Controllers;
 
 use School\Course;
-use Illuminate\Http\Request;
 use School\Http\Requests\StoreCourseRequest;
 use School\Http\Requests\UpdateCourseRequest;
 
 class CourseController extends Controller
 {
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $this->authorize('view', Course::class);
@@ -23,10 +22,10 @@ class CourseController extends Controller
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $this->authorize('create', Course::class);
@@ -35,18 +34,19 @@ class CourseController extends Controller
     }
 
     /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function store(StoreCourseRequest $request)
     {
         $this->authorize('create', Course::class);
 
         $request = $request->only(['cod_course', 'name', 'institution']);
 
-        $course = new Course;
+        $course = new Course();
         $course->fill($request);
 
         if ($course->save()) {
@@ -57,11 +57,12 @@ class CourseController extends Controller
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  \School\Course  $course
-    * @return \Illuminate\Http\Response
-    */
+     * Display the specified resource.
+     *
+     * @param \School\Course $course
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function show(Course $course)
     {
         $this->authorize('view', $course);
@@ -70,11 +71,12 @@ class CourseController extends Controller
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \School\Course  $course
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for editing the specified resource.
+     *
+     * @param \School\Course $course
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Course $course)
     {
         $this->authorize('update', $course);
@@ -83,12 +85,13 @@ class CourseController extends Controller
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \School\Course  $course
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \School\Course           $course
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function update(UpdateCourseRequest $request, Course $course)
     {
         $this->authorize('update', $course);
@@ -101,11 +104,12 @@ class CourseController extends Controller
     }
 
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  \School\Course  $course
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param \School\Course $course
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Course $course)
     {
         $this->authorize('delete', $course);
