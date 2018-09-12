@@ -19,7 +19,7 @@ class GuestTest extends TestCase
     public function testGuestCantNotViewAdmin()
     {
         $this->withExceptionHandling();
-        $user = factory('School\User')->create();
+        $user = factory(\School\User::class)->create();
 
         $this->get('/admin')
             ->assertDontSee($user->name)

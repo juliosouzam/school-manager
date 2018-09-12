@@ -12,7 +12,7 @@ class AllCourseTest extends TestCase
     public function test_if_unauthenticated_cant_create_course()
     {
         $this->withExceptionHandling();
-        $course = factory('School\Course')->make();
+        $course = factory(\School\Course::class)->make();
 
         $this->post('admin/course/store', $course->toArray())
         ->assertDontSeeText($course->name)
@@ -23,7 +23,7 @@ class AllCourseTest extends TestCase
     {
         $this->signIn();
 
-        $course = factory('School\Course')->make();
+        $course = factory(\School\Course::class)->make();
 
         $resp = $this->post('/admin/course/store', $course->toArray());
 
@@ -34,7 +34,7 @@ class AllCourseTest extends TestCase
     public function test_if_unauthenticated_cant_view_course()
     {
         $this->withExceptionHandling();
-        $course = factory('School\Course')->create();
+        $course = factory(\School\Course::class)->create();
 
         $response = $this->get('/admin/course/'.$course->id);
         $response->assertDontSeeText($course->name)
@@ -45,9 +45,9 @@ class AllCourseTest extends TestCase
     {
         $this->signIn();
 
-        $course = factory('School\Course')->create();
-        $courseTwo = factory('School\Course')->create();
-        $courseThree = factory('School\Course')->create();
+        $course = factory(\School\Course::class)->create();
+        $courseTwo = factory(\School\Course::class)->create();
+        $courseThree = factory(\School\Course::class)->create();
 
         $response = $this->get('admin/course');
         $response->assertSee($course->name)
@@ -59,7 +59,7 @@ class AllCourseTest extends TestCase
     {
         $this->signIn();
 
-        $course = factory('School\Course')->create();
+        $course = factory(\School\Course::class)->create();
 
         $this->get('admin/course/'.$course->id)
         ->assertSee($course->name);
@@ -69,7 +69,7 @@ class AllCourseTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $course = factory('School\Course')->create();
+        $course = factory(\School\Course::class)->create();
 
         $this->get("admin/course/{$course->id}")
         ->assertStatus(302);
@@ -79,8 +79,8 @@ class AllCourseTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $course = factory('School\Course')->create();
-        $newCourse = factory('School\Course')->make();
+        $course = factory(\School\Course::class)->create();
+        $newCourse = factory(\School\Course::class)->make();
 
         $response = $this->put('/admin/course/update/'.$course->id, $newCourse->toArray());
 
@@ -92,8 +92,8 @@ class AllCourseTest extends TestCase
     {
         $this->signIn();
 
-        $course = factory('School\Course')->create();
-        $courseUpd = factory('School\Course')->make();
+        $course = factory(\School\Course::class)->create();
+        $courseUpd = factory(\School\Course::class)->make();
 
         $this->put('/admin/course/update/'.$course->id, $courseUpd->toArray());
 
@@ -106,7 +106,7 @@ class AllCourseTest extends TestCase
     public function test_if_unauthenticated_cant_delete_course()
     {
         $this->withExceptionHandling();
-        $course = factory('School\Course')->create();
+        $course = factory(\School\Course::class)->create();
 
         $response = $this->delete('/admin/course/destroy/'.$course->id, $course->toArray());
         $response->assertDontSeeText($course->name)
@@ -117,7 +117,7 @@ class AllCourseTest extends TestCase
     {
         $this->signIn();
 
-        $course = factory('School\Course')->create();
+        $course = factory(\School\Course::class)->create();
 
         $this->delete('/admin/course/destroy/'.$course->id);
 

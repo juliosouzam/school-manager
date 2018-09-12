@@ -11,7 +11,7 @@ class RoleTest extends TestCase
 
     public function test_if_role_exists_in_database()
     {
-        $role = factory('School\Role')->create();
+        $role = factory(\School\Role::class)->create();
 
         $this->assertDatabaseHas('roles', ['id'=>$role->id]);
     }

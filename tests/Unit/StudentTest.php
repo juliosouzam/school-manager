@@ -11,15 +11,15 @@ class StudentTest extends TestCase
 
     public function testIfIsStudents()
     {
-        $student = factory('School\Student')->create();
+        $student = factory(\School\Student::class)->create();
 
-        $this->assertInstanceOf('School\Student', $student);
+        $this->assertInstanceOf(\School\Student::class, $student);
     }
 
     public function testIfStudentBelongsToCourse()
     {
-        $student = factory('School\Student')->create();
+        $student = factory(\School\Student::class)->create();
 
-        $this->assertInstanceOf('School\Course', $student->course);
+        $this->assertInstanceOf(\School\Course::class, $student->course);
     }
 }
