@@ -1,4 +1,4 @@
-FROM juliocesar/apache-php-mysql-pgsql
+FROM juliocesar/php-mysql-pgsql:7.2
 
 LABEL Júlio César <eu@ojuliocesar.me>
 

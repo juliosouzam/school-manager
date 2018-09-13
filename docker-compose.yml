@@ -31,7 +31,7 @@ services:
       - POSTGRES_USER=school
       - POSTGRES_PASSWORD=70005b146c63911adabe92c6226269010c40d8433bf570f8a391f470b011
     volumes:
-      - ../data:/var/lib/postgresql/data
+      - ../data/school/data:/var/lib/postgresql/data
     networks:
       - "webnet"
 
