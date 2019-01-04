@@ -50,7 +50,9 @@
             "@php artisan package:discover"
         ],
         "post-install-cmd": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan key:generate",
+            "@php artisan package:discover"
         ]
     },
     "config": {
