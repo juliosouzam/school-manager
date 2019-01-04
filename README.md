@@ -1,4 +1,5 @@
 # School Manager
+[![Build Status](https://travis-ci.com/juliosouzam/school-manager.svg?branch=master)](https://travis-ci.com/juliosouzam/school-manager)
 
 Sistema desenvolvido para a vaga de Desenvolvedor PHP
 
