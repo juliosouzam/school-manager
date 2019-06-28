@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/juliosouzam/school-manager.svg?branch=master)](https://travis-ci.org/juliosouzam/school-manager)
 [![CircleCI](https://circleci.com/gh/juliosouzam/school-manager.svg?style=svg)](https://circleci.com/gh/juliosouzam/school-manager)
 
-Sistema desenvolvido para a vaga de Desenvolvedor PHP
+Sistema de execício para apredizado sobre Continuos Integration
 
 ## Getting Started
 
