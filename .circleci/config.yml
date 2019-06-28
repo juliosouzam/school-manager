@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
 
-      - run: apt update && apt install zlib1g-dev libsqlite3-dev
+      - run: apt update -y && apt install zlib1g-dev libsqlite3-dev -y
       - run: docker-php-ext-install zip
 
       - restore_cache:
